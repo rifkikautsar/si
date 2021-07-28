@@ -1,7 +1,7 @@
 <title>Home</title>
 
 <div class="container-fluid">
-    <div class="row justify-content-center">
+    <div class="row">
         Konten disini
     </div>
 </div>
