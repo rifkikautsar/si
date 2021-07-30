@@ -12,6 +12,10 @@ $db=dbConnect();
 th {
     text-align: center;
 }
+
+th, td {
+    font-size: 12px;
+}
 </style>
 <div class="container-fluid" style="height: 445px; overflow: scroll;">
     <div class="row">
