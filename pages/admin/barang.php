@@ -18,6 +18,7 @@ td {
     font-size: 12px;
 }
 </style>
+<title>Data Barang</title>
 <div class="container-fluid" style="height: 445px; overflow: scroll;">
     <div class="row">
         <form action="" method="post">
@@ -25,156 +26,159 @@ td {
                 <!--<label for="inputidbarang" class="form-label">ID Barang</label>
                 <span class="input-group-text">M</span>-->
                 <input type="text" class="form-control form-control-sm" name="keyword" placeholder="Cari Barang"
-                    autocomplete="off" size="50">
+                    id="keyword" autocomplete="off" size="50">
             </div>
         </form>
     </div>
     <div class="row pb-2">
         <a href="index.php?page=tambah-barang" class="btn btn-success">Tambah</a>
     </div>
-    <div class="row">
-        <table class="table table-bordered table-responsive-sm">
-            <tr>
-                <th rowspan="2" style="width: 10%;">ID Barang</th>
-                <th rowspan="2" style="width: 10%;">Kategori</th>
-                <th rowspan="2" style="width: 10%;">Supplier</th>
-                <th rowspan="2" style="width: 15%;">Nama Barang</th>
-                <th rowspan="2" style="width: 10%;">Jml</th>
-                <th colspan="3" style="width: 10%;">Keterangan</th>
-                <th rowspan="2" style="width: 15%;">Tanggal</th>
-                <th rowspan="2" colspan="2" style="width: 20%;">Aksi</th>
-            </tr>
-            <tr>
-                <th>Baik</th>
-                <th>Ringan</th>
-                <th>Rusak</th>
-            </tr>
-            <tbody>
-                <form action="" method="post">
-                    <?php $k = getDataBarang(); 
+    <div id="container">
+        <div class="row">
+            <table class="table table-bordered table-responsive-sm">
+                <tr>
+                    <th rowspan="2" style="width: 10%;">ID Barang</th>
+                    <th rowspan="2" style="width: 10%;">Kategori</th>
+                    <th rowspan="2" style="width: 10%;">Supplier</th>
+                    <th rowspan="2" style="width: 15%;">Nama Barang</th>
+                    <th rowspan="2" style="width: 10%;">Jml</th>
+                    <th colspan="3" style="width: 10%;">Keterangan</th>
+                    <th rowspan="2" style="width: 15%;">Tanggal</th>
+                    <th rowspan="2" colspan="2" style="width: 20%;">Aksi</th>
+                </tr>
+                <tr>
+                    <th>Baik</th>
+                    <th>Ringan</th>
+                    <th>Rusak</th>
+                </tr>
+                <tbody>
+                    <form action="" method="post">
+                        <?php $k = getDataBarang(); 
                 foreach($k as $row):?>
-                    <tr>
-                        <td><?=$row['id_barang'];?></td>
-                        <td><?=$row['nm_kat'];?></td>
-                        <td><?=$row['nm_supplier'];?></td>
-                        <td><?=$row['nm_barang'];?></td>
-                        <td><?=$row['jumlah']." ".$row['nm_satuan']?></td>
-                        <td><?=$row['baik'];?></td>
-                        <td><?=$row['rusak'];?></td>
-                        <td><?=$row['rusak_berat'];?></td>
-                        <td><?=$row['tanggal'];?></td>
-                        <td><button type="button" class="btn btn-primary edit-data" id="<?=$row['id_barang'];?>"
-                                name="edit">Edit</button>
-                        </td>
-                        <td><button class="btn btn-danger">Delete</button></td>
-                    </tr>
-                    <?php endforeach; ?>
-                </form>
-            </tbody>
-        </table>
-        <!-- Modal Edit -->
-        <form action="" method="post" id="insert_form">
-            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-                aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-scrollable">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="staticBackdropLabel">Edit Data</h5>
-                        </div>
+                        <tr>
+                            <td><?=$row['id_barang'];?></td>
+                            <td><?=$row['nm_kat'];?></td>
+                            <td><?=$row['nm_supplier'];?></td>
+                            <td><?=$row['nm_barang'];?></td>
+                            <td><?=$row['jumlah']." ".$row['nm_satuan']?></td>
+                            <td><?=$row['baik'];?></td>
+                            <td><?=$row['rusak'];?></td>
+                            <td><?=$row['rusak_berat'];?></td>
+                            <td><?=$row['tanggal'];?></td>
+                            <td><button type="button" class="btn btn-primary edit-data" id="<?=$row['id_barang'];?>"
+                                    name="edit">Edit</button>
+                            </td>
+                            <td><button class="btn btn-danger">Delete</button></td>
+                        </tr>
+                        <?php endforeach; ?>
+                    </form>
+                </tbody>
+            </table>
+            <!-- Modal Edit -->
+            <form action="" method="post" id="insert_form">
+                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+                    tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-scrollable">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="staticBackdropLabel">Edit Data</h5>
+                            </div>
 
-                        <div class="modal-body">
-                            <table class="table table-borderless">
-                                <tr>
-                                    <td>ID Barang</td>
-                                    <td colspan="3"><input type="text" class="form-control" readonly name="id_barang"
-                                            id="id_barang">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Nama Barang</td>
-                                    <td colspan="3"><input type="text" class="form-control" name="nm_barang"
-                                            autocomplete="off" id="nm_barang">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Kategori</td>
-                                    <td colspan="3">
-                                        <select class="form-control" id="kategori" name="kategori" required>
-                                            <?php $d = getKategori();
+                            <div class="modal-body">
+                                <table class="table table-borderless">
+                                    <tr>
+                                        <td>ID Barang</td>
+                                        <td colspan="3"><input type="text" class="form-control" readonly
+                                                name="id_barang" id="id_barang">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Nama Barang</td>
+                                        <td colspan="3"><input type="text" class="form-control" name="nm_barang"
+                                                autocomplete="off" id="nm_barang">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Kategori</td>
+                                        <td colspan="3">
+                                            <select class="form-control" id="kategori" name="kategori" required>
+                                                <?php $d = getKategori();
                                         foreach($d as $kat):?>
-                                            <option value="<?=$kat['id_kat'];?>"><?=$kat['nm_kat'] ?>
-                                                <?php endforeach; ?>
-                                        </select>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Supplier</td>
-                                    <td colspan="3"><select name="supplier" class="form-control" id="supplier">
-                                            <?php $s = getSupplier();
+                                                <option value="<?=$kat['id_kat'];?>"><?=$kat['nm_kat'] ?>
+                                                    <?php endforeach; ?>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Supplier</td>
+                                        <td colspan="3"><select name="supplier" class="form-control" id="supplier">
+                                                <?php $s = getSupplier();
                                     foreach($s as $dt):?>
-                                            <option value="<?=$dt['id_supplier'];?>"><?=$dt['nm_supplier'];?></option>
-                                            <?php endforeach;?>
-                                        </select>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Jumlah</td>
-                                    <td><input type="text" class="form-control" readonly name="jml" id="jml"
-                                            autocomplete="off" style="width: 5rem;">
-                                    </td>
-                                    <td>Satuan</td>
-                                    <td><select name="satuan" id="satuan" autocomplete="off" class="form-control">
-                                            <?php $k = getSatuan();
+                                                <option value="<?=$dt['id_supplier'];?>"><?=$dt['nm_supplier'];?>
+                                                </option>
+                                                <?php endforeach;?>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jumlah</td>
+                                        <td><input type="text" class="form-control" readonly name="jml" id="jml"
+                                                autocomplete="off" style="width: 5rem;">
+                                        </td>
+                                        <td>Satuan</td>
+                                        <td><select name="satuan" id="satuan" autocomplete="off" class="form-control">
+                                                <?php $k = getSatuan();
                                     foreach($k as $dt):?>
-                                            <option value="<?=$dt['id_satuan'];?>"><?=$dt['nm_satuan'];?></option>
-                                            <?php endforeach;?>
-                                        </select></td>
-                                </tr>
-                                <tr>
-                                    <td>Baik</td>
-                                    <td colspan="3"><input type="text" autocomplete="off" name="baik" id="baik"
-                                            class="form-control" style="width: 5rem;">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Rusak ringan</td>
-                                    <td colspan="3"><input type="text" name="ringan" autocomplete="off" id="ringan"
-                                            class="form-control" style="width: 5rem;">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Rusak Berat</td>
-                                    <td colspan="3"><input type="text" name="berat" id="berat" autocomplete="off"
-                                            class="form-control" style="width: 5rem;">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Tanggal</td>
-                                    <td colspan="3"><input type="date" class="form-control" name="tanggal" id="tanggal"
-                                            style="width: 15rem;">
-                                    </td>
+                                                <option value="<?=$dt['id_satuan'];?>"><?=$dt['nm_satuan'];?></option>
+                                                <?php endforeach;?>
+                                            </select></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Baik</td>
+                                        <td colspan="3"><input type="text" autocomplete="off" name="baik" id="baik"
+                                                class="form-control" style="width: 5rem;">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Rusak ringan</td>
+                                        <td colspan="3"><input type="text" name="ringan" autocomplete="off" id="ringan"
+                                                class="form-control" style="width: 5rem;">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Rusak Berat</td>
+                                        <td colspan="3"><input type="text" name="berat" id="berat" autocomplete="off"
+                                                class="form-control" style="width: 5rem;">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tanggal</td>
+                                        <td colspan="3"><input type="date" class="form-control" name="tanggal"
+                                                id="tanggal" style="width: 15rem;">
+                                        </td>
 
-                                </tr>
-                                <tr>
-                                    <td>Sumber</td>
-                                    <td colspan="3"><select name="sumber" id="sumber" class="form-control"
-                                            style="width: 15rem;">
-                                            <option value="APBD">APBD</option>
-                                            <option value="mandiri">Mandiri</option>
-                                        </select></td>
-                                </tr>
-                            </table>
-                        </div>
+                                    </tr>
+                                    <tr>
+                                        <td>Sumber</td>
+                                        <td colspan="3"><select name="sumber" id="sumber" class="form-control"
+                                                style="width: 15rem;">
+                                                <option value="APBD">APBD</option>
+                                                <option value="mandiri">Mandiri</option>
+                                            </select></td>
+                                    </tr>
+                                </table>
+                            </div>
 
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-success" name="insert" id="insert"
-                                value="Insert">Update</button>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-success" name="insert" id="insert"
+                                    value="Insert">Update</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
 </div>
 <script>
@@ -283,4 +287,9 @@ $('#insert_form').on("submit", function(event) {
         });
     }
 })
+$(document).ready(function() {
+    $("#keyword").on('keyup', function() {
+        $("#container").load("cari.php?keyword=" + $("#keyword").val());
+    });
+});
 </script>
