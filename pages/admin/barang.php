@@ -34,8 +34,8 @@ th {
                 <th rowspan="2" style="width: 10%;">Kategori</th>
                 <th rowspan="2" style="width: 10%;">Supplier</th>
                 <th rowspan="2" style="width: 15%;">Nama Barang</th>
-                <th rowspan="2" style="width: 5%;">Jml</th>
-                <th colspan="3" style="width: 15%;">Keterangan</th>
+                <th rowspan="2" style="width: 10%;">Jml</th>
+                <th colspan="3" style="width: 10%;">Keterangan</th>
                 <th rowspan="2" style="width: 15%;">Tanggal</th>
                 <th rowspan="2" colspan="2" style="width: 20%;">Aksi</th>
             </tr>
@@ -52,7 +52,7 @@ th {
                     <td><?=$row['nm_kat'];?></td>
                     <td><?=$row['nm_supplier'];?></td>
                     <td><?=$row['nm_barang'];?></td>
-                    <td><?=$row['jumlah'];?></td>
+                    <td><?=$row['jumlah']." ".$row['nm_satuan']?></td>
                     <td><?=$row['baik'];?></td>
                     <td><?=$row['rusak'];?></td>
                     <td><?=$row['rusak_berat'];?></td>
@@ -73,7 +73,7 @@ th {
                         <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
                     </div>
                     <div class="modal-body">
-                        ...
+                        <input type="text" readonly name="id_barang" id="id_barang">
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -86,6 +86,8 @@ th {
 </div>
 <script>
 $(".edit-data").on("click", function() {
+    var id = $(this).attr("id");
+    $("#id_barang").val(id);
     $("#staticBackdrop").modal("show");
 })
 </script>
