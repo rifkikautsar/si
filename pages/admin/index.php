@@ -20,6 +20,12 @@ if(isset($_GET['page'])){
         case 'barang':
             include("barang.php");
             break;
+        case 'supplier':
+        include("supplier.php");
+            break;
+        case 'kategori':
+        include("kategori.php");
+            break;
         case 'tambah-barang':
             include("tambah-barang.php");
             break;
