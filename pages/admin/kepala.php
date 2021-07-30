@@ -143,10 +143,9 @@ $(document).ready(function() {
 });
 $(document).ready(function() {
     $(".hapus").on("click", function() {
-        var id_pegawai = $(this).attr("id");
+        var id_petugas = $(this).attr("id");
         Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
+            title: 'Apakah anda yakin menghapus data?',
             icon: 'warning',
             allowOutsideClick: false,
             showCancelButton: true,
@@ -159,19 +158,27 @@ $(document).ready(function() {
                     url: "hapus.php",
                     method: "post",
                     data: {
-                        id_pegawai: id_pegawai
+                        id_petugas: id_petugas
                     },
                     success: function(data) {
-                        Swal.fire({
-                            title: 'Deleted',
-                            text: 'Your file has been deleted.',
-                            icon: 'success',
-                            confirmButtonText: `Ok`
-                        }).then((result) => {
-                            document.location.href =
-                                'index.php?page=kepala'
-                        })
-
+                        if (data === "OK") {
+                            Swal.fire({
+                                title: 'Deleted',
+                                text: 'Your file has been deleted.',
+                                icon: 'success',
+                                confirmButtonText: `Ok`
+                            }).then((result) => {
+                                document.location.href =
+                                    'index.php?page=kepala'
+                            })
+                        } else {
+                            Swal.fire({
+                                title: 'Data gagal dihapus',
+                                text: data,
+                                icon: 'error',
+                                showCloseButton: true,
+                            })
+                        }
                     }
                 })
             }
@@ -195,7 +202,7 @@ $('#insert_form').on("submit", function(event) {
                 $('#insert').val("Inserting");
             },
             success: function(data) {
-                if (data == "OK") {
+                if (data === "OK") {
                     Swal.fire({
                         title: 'Data berhasil diubah',
                         icon: 'success',
@@ -207,20 +214,19 @@ $('#insert_form').on("submit", function(event) {
                             document.location.href = "index.php?page=kepala";
                         }
                     })
-                } else if (data == "ERROR1") {
+                } else if (data === "ERROR1") {
                     Swal.fire({
                         title: 'Data gagal diubah',
-                        text: 'username mungkin sudah ada',
+                        text: 'Username mungkin sudah ada',
                         icon: 'error',
-                        showConfirmButton: false,
-                        timer: 1500
+                        showCloseButton: true,
                     })
-                } else {
+                } else if (data === "ERROR2") {
                     Swal.fire({
                         title: 'Data gagal diubah',
+                        text: data,
                         icon: 'error',
-                        showConfirmButton: false,
-                        timer: 1500
+                        showCloseButton: true,
                     })
                 }
             },

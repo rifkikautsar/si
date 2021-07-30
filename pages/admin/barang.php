@@ -3,6 +3,9 @@
         Cari
     </div>
     <div class="row">
+        <a href="index.php?page=tambah-barang" class="btn btn-success">Tambah</a>
+    </div>
+    <div class="row">
         <div class="row row-cols-1 row-cols-md-4 g-4">
             <?php for($i=0;$i<100;$i++): ?>
             <div class="col pb-2">

@@ -5,7 +5,7 @@ if($db->connect_errno==0){
 
 
 ?>
-<title>Data Petugas</title>
+<title>Data Anggota</title>
 
 <div class="container-fluid justify-content-center">
     <!-- Page Heading -->
@@ -132,10 +132,9 @@ $(document).ready(function() {
 });
 $(document).ready(function() {
     $(".hapus").on("click", function() {
-        var id_pegawai = $(this).attr("id");
+        var id_anggota = $(this).attr("id");
         Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
+            title: 'Apakah anda yakin menghapus data?',
             icon: 'warning',
             allowOutsideClick: false,
             showCancelButton: true,
@@ -148,19 +147,27 @@ $(document).ready(function() {
                     url: "hapus.php",
                     method: "post",
                     data: {
-                        id_pegawai: id_pegawai
+                        id_anggota: id_anggota
                     },
                     success: function(data) {
-                        Swal.fire({
-                            title: 'Deleted',
-                            text: 'Your file has been deleted.',
-                            icon: 'success',
-                            confirmButtonText: `Ok`
-                        }).then((result) => {
-                            document.location.href =
-                                'index.php?page=anggota'
-                        })
-
+                        if (data === "OK") {
+                            Swal.fire({
+                                title: 'Deleted',
+                                text: 'Your file has been deleted.',
+                                icon: 'success',
+                                confirmButtonText: `Ok`
+                            }).then((result) => {
+                                document.location.href =
+                                    'index.php?page=anggota'
+                            })
+                        } else {
+                            Swal.fire({
+                                title: 'Data gagal dihapus',
+                                text: data,
+                                icon: 'error',
+                                showCloseButton: true,
+                            })
+                        }
                     }
                 })
             }
@@ -199,9 +206,9 @@ $('#insert_form').on("submit", function(event) {
                 } else {
                     Swal.fire({
                         title: 'Data gagal diubah',
+                        text: data,
                         icon: 'error',
-                        showConfirmButton: false,
-                        timer: 1500
+                        showCloseButton: true,
                     })
                 }
             },

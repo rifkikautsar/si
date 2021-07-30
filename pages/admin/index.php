@@ -20,6 +20,9 @@ if(isset($_GET['page'])){
         case 'barang':
             include("barang.php");
             break;
+        case 'tambah-barang':
+            include("tambah-barang.php");
+            break;
             default:
             echo "Halaman Tidak ditemukan";
     }

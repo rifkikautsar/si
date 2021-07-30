@@ -16,15 +16,19 @@
      {    
           $res=$db->query("SELECT * from petugas where username='$username'");
           if($res){
-               if($res->num_rows>1){
+               if($res->num_rows>0){
                     $message = "ERROR1";
                }else{
                     $query = "UPDATE petugas set nm_petugas = '$nama', username='$username', hak_akses='$jbt' where id_petugas='$id_petugas'"; 
                     $result = $db->query($query);
                     if($result){
-                         $message = 'OK';
+                         if($db->affected_rows>0){
+                              $message = "OK";
+                         }else{
+                              $message="ERROR2".(DEVELOPMENT?" : ".$db->error:"");
+                         }
                     }else{
-                         $message = "ERROR";
+                         $message = "ERROR".(DEVELOPMENT?" : ".$db->error:"");
                     }
                }
           }
@@ -37,9 +41,13 @@
       if($id_anggota!=""){
            $res=$db->query("UPDATE anggota set nm_anggota='$nama', jk='$jk' where id_anggota='$id_anggota'");
            if($res){
-               $message='OK';
+                if($db->affected_rows>0){
+                    $message="OK";
+                }else{
+                    $message="ERROR2".(DEVELOPMENT?" : ".$db->error:"");
+                }
            }else{
-               $message='ERROR';
+               $message='ERROR'.(DEVELOPMENT?" : ".$db->error:"");
            }
       }
  }
