@@ -68,7 +68,9 @@ td {
                             <td><button type="button" class="btn btn-primary edit-data" id="<?=$row['id_barang'];?>"
                                     name="edit">Edit</button>
                             </td>
-                            <td><button class="btn btn-danger">Delete</button></td>
+                            <td><button type="button" class="btn btn-danger hapus-data" name="hapus"
+                                    id="<?=$row['id_barang'];?>">Delete</button>
+                            </td>
                         </tr>
                         <?php endforeach; ?>
                     </form>
@@ -292,5 +294,48 @@ $(document).ready(function() {
         $keyword = $("#keyword").val();
         $("#container").load("cari.php?keyword=" + encodeURI($keyword));
     });
+
+    $(".hapus-data").on("click", function() {
+        var id_barang = $(this).attr("id");
+        Swal.fire({
+            title: 'Apakah anda ingin menghapus data barang?',
+            icon: 'warning',
+            allowOutsideClick: false,
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            cancelButtonText: 'Kembali',
+            confirmButtonText: 'Hapus'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: "delete.php",
+                    method: "post",
+                    data: {
+                        id_barang: id_barang
+                    },
+                    success: function(data) {
+                        if (data === "OK") {
+                            Swal.fire({
+                                title: 'Data berhasil dihapus',
+                                icon: 'success',
+                                confirmButtonText: `Ok`
+                            }).then((result) => {
+                                document.location.href =
+                                    'index.php?page=barang'
+                            })
+                        } else {
+                            Swal.fire({
+                                title: 'Data gagal dihapus',
+                                text: data,
+                                icon: 'error',
+                                showCloseButton: true
+                            })
+                        }
+                    }
+                })
+            }
+        })
+    })
 });
 </script>
