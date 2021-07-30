@@ -78,6 +78,18 @@
                     <span>Data Barang</span>
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="index.php?page=supplier">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Data Supplier</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="index.php?page=kategori">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Data Kategori</span>
+                </a>
+            </li>
             <!-- Divider -->
             <hr class="sidebar-divider" />
 

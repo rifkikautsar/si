@@ -4,6 +4,91 @@ h1 {
     font-size: 20px;
 }
 </style>
+    <div class=" offset-lg-2 col-lg-8">
+        <div class="container">
+            <form class="col" action="" method="post" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label for="inputidbarang" class="form-label">ID Barang</label>
+                    <div class="input-group">
+                        <!--<span class="input-group-text">M</span>-->
+                        <input type="text" class="form-control form-control-sm" name="idbarang" autocomplete="off"
+                            required>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="inputidkategori" class="form-label">ID Kategori</label>
+                    <select class="form-control form-control-sm" name="idkategori" autocomplete="off" required>
+                            <option value="0" selected>1</option>
+                            <option value="1">2</option>
+                            <option value="2">3</option>
+                            <option value="3">4</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="inputidsupplier" class="form-label">ID Supplier</label>
+                    <select class="form-control form-control-sm" name="idsupplier" autocomplete="off" required>
+                            <option value="0" selected>1</option>
+                            <option value="1">2</option>
+                            <option value="2">3</option>
+                            <option value="3">4</option>
+                    </select>
+                </div>
+                <!--<div class="mb-3">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <label for="inputidkategori" class="form-label">ID Kategori</label>
+                            <select class="form-control form-control-sm" id="idkategori" name="idkategori" autocomplete="off"
+                            required>
+                            <option value="0" selected>1</option>
+                            <option value="1">2</option>
+                            <option value="2">3</option>
+                            <option value="3">4</option>
+                            </select>
+                        </div>
+                    </div>    
+                </div>
+                <div class="mb-3">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <label for="inputidsupplier" class="form-label">ID Supplier</label>
+                            <select class="form-control form-control-sm" id="idsupplier" name="idsupplier" autocomplete="off"
+                            required>
+                            <option value="0" selected>1</option>
+                            <option value="1">2</option>
+                            <option value="2">3</option>
+                            <option value="3">4</option>
+                            </select>
+                        </div>
+                    </div>    
+                </div>-->
+                <div class="mb-3">
+                    <label for="inputNama-barang" class="form-label">Nama Barang</label>
+                    <input type="text" class="form-control form-control-sm" name="nama-barang" autocomplete="off" required>
+                </div>
+                <div class="mb-3">
+                    <label for="inputjml" class="form-label">Jumlah Barang</label>
+                    <input type="number" class="form-control form-control-sm" rows="3" name="jml" autocomplete="off"
+                        required>
+                </div>
+                <div class="mb-3">
+                    <label for="inputsatuan" class="form-label">Satuan</label>
+                    <select class="form-control form-control-sm" rows="3" name="satuan" autocomplete="off"
+                        required>
+                            <option value="0" selected>1</option>
+                            <option value="1">2</option>
+                            <option value="2">3</option>
+                            <option value="3">4</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <button class="btn btn-primary" type="submit" name="submit-menu">Submit</button>
+                    <button class="btn btn-danger" type="reset">Reset</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+<!--
 <div class="container justify-content-center" style="color: black;">
     <div class="row">
         <div class="mx-4">
@@ -75,3 +160,4 @@ h1 {
         </div>
     </div>
 </div>
+-->
