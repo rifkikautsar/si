@@ -1,7 +1,7 @@
 <?php
 include("../../functions.php");
 $db=dbConnect();
-$keyword = $_GET["keyword"];
+$keyword = urldecode($_GET["keyword"]);
 $sql= "SELECT b.id_barang,b.nm_barang,b.tanggal, b.jumlah,k.nm_kat,s.nm_supplier,st.nm_satuan,rb.baik,rb.rusak,rb.rusak_berat,rb.sumber from barang b join rincian_barang rb using(id_barang) join kategori_barang k using(id_kat) join satuan st using(id_satuan) join supplier s using(id_supplier)
 where b.nm_barang like '%$keyword%' or b.tanggal like '%$keyword%' or k.nm_kat like '%$keyword%' or s.nm_supplier like '%$keyword%' or rb.sumber like '%$keyword%' or rb.baik like '%$keyword%' or rb.rusak like '%$keyword%' or rb.rusak_berat like '%$keyword%'";
 $res=$db->query($sql);

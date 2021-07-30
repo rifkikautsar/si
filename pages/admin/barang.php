@@ -289,7 +289,8 @@ $('#insert_form').on("submit", function(event) {
 })
 $(document).ready(function() {
     $("#keyword").on('keyup', function() {
-        $("#container").load("cari.php?keyword=" + $("#keyword").val());
+        $keyword = $("#keyword").val();
+        $("#container").load("cari.php?keyword=" + encodeURI($keyword));
     });
 });
 </script>
