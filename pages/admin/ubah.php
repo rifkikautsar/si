@@ -50,6 +50,20 @@
                $message='ERROR'.(DEVELOPMENT?" : ".$db->error:"");
            }
       }
+ }else if(isset($_POST['id_kat'])){
+      $id_kat = $db->escape_string($_POST['id_kat']);
+      $nm_kat = $db->escape_string($_POST['nm_kat']);
+      $sql = "UPDATE kategori_barang set nm_kat='$nm_kat' where id_kat = '$id_kat'";
+      $res=$db->query($sql);
+      if($res){
+           if($db->affected_rows>0){
+                $message = "OK";
+           }else{
+               $message="ERROR".(DEVELOPMENT?" : ".$db->error:"");
+           }
+      }else{
+          $message='ERROR'.(DEVELOPMENT?" : ".$db->error:"");
+      }
  }
  echo $message;
  ?>
