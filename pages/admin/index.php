@@ -26,6 +26,9 @@ if(isset($_GET['page'])){
         case 'kategori':
         include("kategori.php");
             break;
+        case 'satuan':
+        include("satuan.php");
+            break;
         case 'tambah-barang':
             include("tambah-barang.php");
             break;

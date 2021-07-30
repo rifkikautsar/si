@@ -101,3 +101,54 @@ function getDataBarang(){
 	else
 		return FALSE;
 }
+
+function getSupplier(){
+	$db=dbConnect();
+	if($db->connect_errno==0){
+		$sql= "SELECT * from supplier";
+		$res=$db->query($sql);
+		if($res){
+			$data=$res->fetch_all(MYSQLI_ASSOC);
+			$res->free();
+			return $data;
+		}
+		else
+			return FALSE; 
+	}
+	else
+		return FALSE;
+}
+
+function getKategori(){
+	$db=dbConnect();
+	if($db->connect_errno==0){
+		$sql= "SELECT * from kategori_barang";
+		$res=$db->query($sql);
+		if($res){
+			$data=$res->fetch_all(MYSQLI_ASSOC);
+			$res->free();
+			return $data;
+		}
+		else
+			return FALSE; 
+	}
+	else
+		return FALSE;
+}
+
+function getSatuan(){
+	$db=dbConnect();
+	if($db->connect_errno==0){
+		$sql= "SELECT * from satuan";
+		$res=$db->query($sql);
+		if($res){
+			$data=$res->fetch_all(MYSQLI_ASSOC);
+			$res->free();
+			return $data;
+		}
+		else
+			return FALSE; 
+	}
+	else
+		return FALSE;
+}
