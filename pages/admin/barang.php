@@ -26,43 +26,6 @@ th {
     </div>
     <div class="row pb-2">
         <a href="index.php?page=tambah-barang" class="btn btn-success">Tambah</a>
-
-        <table class="table mt-3 table-striped">
-            <?php
-	    include_once("../../functions.php");
-	    $db = dbconnect();
-	    if($db->connect_errno == 0 ){
-    	?>
-
-            <tr>
-                <th>ID Barang</th>
-                <th>ID Kategori</th>
-                <th>ID Supplier</th>
-                <th>Nama barang</th>
-                <th>Tanggal</th>
-                <th>Jumlah Barang</th>
-                <th>Satuan</th>
-            </tr>
-            <?php
-        $data = getBarang();
-            foreach($data as $dt){
-            $id_barang = $dt['id_barang'];
-            ?>
-            <tr>
-                <td><?php echo $dt["id_barang"]; ?></td>
-                <td><?php echo $dt["id_kat"]; ?></td>
-                <td><?php echo $dt["id_supplier"]; ?></td>
-                <td><?php echo $dt["nm_barang"]; ?></td>
-                <td><?php echo $dt["jumlah"]; ?></td>
-                <td><?php echo $dt["satuan"]; ?></td>
-                <td><?php echo $dt["tanggal"]; ?></td>
-            </tr>
-            <?php
-		    }
-		}else
-			echo "Gagal Koneksi : "." : ".$db->connect_error."<br>";
-			?>
-        </table>
     </div>
     <div class="row">
         <table class="table table-bordered table-responsive-sm">
@@ -94,11 +57,35 @@ th {
                     <td><?=$row['rusak'];?></td>
                     <td><?=$row['rusak_berat'];?></td>
                     <td><?=$row['tanggal'];?></td>
-                    <td><button class="btn btn-primary" id="<?=$row['id_barang'];?>">Edit</button></td>
+                    <td><button class="btn btn-primary edit-data" id="<?=$row['id_barang'];?>" name="edit">Edit</button>
+                    </td>
                     <td><button class="btn btn-danger">Delete</button></td>
                 </tr>
                 <?php endforeach; ?>
             </tbody>
         </table>
+        <!-- Modal Edit -->
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                    </div>
+                    <div class="modal-body">
+                        ...
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Understood</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+<script>
+$(".edit-data").on("click", function() {
+    $("#staticBackdrop").modal("show");
+})
+</script>
