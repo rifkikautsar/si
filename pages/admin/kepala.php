@@ -5,19 +5,19 @@ if($db->connect_errno==0){
 
 
 ?>
-<title>Data Petugas</title>
+<title>Data Kepala Lab</title>
 
 <div class="container-fluid justify-content-center">
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-2">
-        <a href="index.php?page=in_anggota" class="btn btn-success">Tambah Data</a>
+        <a href="index.php?page=register" class="btn btn-success">Tambah Data</a>
     </div>
     <div class="row">
         <div class="col-xl-10 col-lg-7" style="height: 400px; overflow: scroll;">
             <div class="card shadow mb-4">
                 <!-- Card Header -->
                 <div class="card-header py-2 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Data Petugas</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Data Kepala</h6>
                 </div>
                 <form action="">
                     <?php 

@@ -40,7 +40,7 @@ if(isset($_FILES['file']['name']) && in_array($_FILES['file']['type'], $file_mim
         $tgl = $sheetData[$i]['9'];
         $sumber = $sheetData[$i]['10'];
 
-        mysqli_query($db,"insert into barang (id_barang,id_kat,id_supplier,nm_barang,jumlah,satuan,tanggal) values ('$id','$id_kat','$id_sup','$nama','$jml','$sat','$tgl')");
+        mysqli_query($db,"insert into barang (id_barang,id_kat,id_supplier,id_satuan,nm_barang,jumlah,tanggal) values ('$id','$id_kat','$id_sup','$sat','$nama','$jml','$tgl')");
         mysqli_query($db,"insert into rincian_barang(id_barang,baik,rusak,rusak_berat,sumber) values('$id','$baik','$rusak','$berat','$sumber')");
     }
     // hapus kembali file .xls yang di upload tadi

@@ -5,7 +5,7 @@ if($db->connect_errno==0){
 
 
 ?>
-<title>Data Petugas</title>
+<title>Data Admin</title>
 
 <div class="container-fluid justify-content-center">
     <!-- Page Heading -->
@@ -17,7 +17,7 @@ if($db->connect_errno==0){
             <div class="card shadow mb-4">
                 <!-- Card Header -->
                 <div class="card-header py-2 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Data Petugas</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Data Admin</h6>
                 </div>
                 <form action="">
                     <?php 

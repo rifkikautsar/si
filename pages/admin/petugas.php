@@ -10,7 +10,7 @@ if($db->connect_errno==0){
 <div class="container-fluid justify-content-center">
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-2">
-        <a href="index.php?page=in_anggota" class="btn btn-success">Tambah Data</a>
+        <a href="index.php?page=register" class="btn btn-success">Tambah Data</a>
     </div>
     <div class="row">
         <div class="col-xl-10 col-lg-7" style="height: 400px; overflow: scroll;">
