@@ -221,7 +221,7 @@ $('#insert_form').on("submit", function(event) {
                         icon: 'error',
                         showCloseButton: true,
                     })
-                } else if (data === "ERROR2") {
+                } else {
                     Swal.fire({
                         title: 'Data gagal diubah',
                         text: data,

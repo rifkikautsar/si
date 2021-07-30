@@ -174,9 +174,9 @@ $(document).ready(function() {
                         } else {
                             Swal.fire({
                                 title: 'Data gagal dihapus',
+                                text: data,
                                 icon: 'error',
-                                showConfirmButton: false,
-                                timer: 1500
+                                showCloseButton: true,
                             })
                         }
                     }
@@ -219,15 +219,14 @@ $('#insert_form').on("submit", function(event) {
                         title: 'Data gagal diubah',
                         text: 'username mungkin sudah ada',
                         icon: 'error',
-                        showConfirmButton: false,
-                        timer: 1500
+                        showCloseButton: true,
                     })
                 } else {
                     Swal.fire({
                         title: 'Data gagal diubah',
+                        text: data,
                         icon: 'error',
-                        showConfirmButton: false,
-                        timer: 1500
+                        showCloseButton: true,
                     })
                 }
             },
