@@ -100,7 +100,7 @@ td {
                                     <td>Kategori</td>
                                     <td colspan="3">
                                         <select class="form-control" id="kategori" name="kategori" required>
-                                            <?php $d = getKategoriBarang();
+                                            <?php $d = getKategori();
                                         foreach($d as $kat):?>
                                             <option value="<?=$kat['id_kat'];?>"><?=$kat['nm_kat'] ?>
                                                 <?php endforeach; ?>
