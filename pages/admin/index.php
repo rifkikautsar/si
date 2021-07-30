@@ -29,6 +29,12 @@ if(isset($_GET['page'])){
         case 'tambah-barang':
             include("tambah-barang.php");
             break;
+        case 'register':
+            include("register.php");
+            break;
+        case 'tambah-anggota':
+            include("tambah-anggota.php");
+            break;
             default:
             echo "Halaman Tidak ditemukan";
     }
