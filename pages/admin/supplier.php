@@ -36,7 +36,7 @@ td {
             <form action="" method="post">
                 <tr>
                     <th rowspan="2" style="width: 10%;">ID Supplier</th>
-                    <th rowspan="2" style="width: 15%;">Nama Kategori</th>
+                    <th rowspan="2" style="width: 15%;">Nama Supplier</th>
                     <th rowspan="2" colspan="2" style="width: 20%;">Aksi</th>
                 </tr>
                 <tbody>
