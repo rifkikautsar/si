@@ -11,8 +11,29 @@ if($db->connect_errno==0){
         $data = $res->fetch_assoc();
         }
     }
-};?>
-<title>Form Tambah Supplier</title>
+
+    if(isset($_POST['submit'])){
+        $id_satuan =$db->escape_string($_POST['id_satuan']);
+        $nm_satuan =$db->escape_string($_POST['nm_satuan']);
+
+        $sql_satuan = "INSERT into satuan values('$id_satuan','$nm_satuan')";
+        $res_satuan=$db->query($sql_satuan);
+        if($res){
+            if($db->affected_rows>0){
+                echo "<script>
+                alert('Data Satuan berhasil ditambahkan')
+                document.location.href = 'index.php'
+                </script>";
+            }
+            else{
+                echo "<script>alert('Data Gagal ditambahkan ".$db->error."')</script>";
+            }
+        }
+        else echo "GAGAL SQL : ".$db->error;
+    }
+}
+?>
+<title>Form Tambah Satuan</title>
 <div class=" offset-lg-3 col-lg-6">
     <div class="container" style="color:black;">
         <form class="col" action="" method="post" enctype="multipart/form-data">
@@ -36,4 +57,3 @@ if($db->connect_errno==0){
         </form>
     </div>
 </div>
-<script>

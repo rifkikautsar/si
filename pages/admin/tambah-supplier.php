@@ -1,3 +1,29 @@
+<?php
+include_once("../../functions.php");
+$db=dbConnect();
+if($db->connect_errno==0){
+    if(isset($_POST['submit'])){
+        $id_supplier =$db->escape_string($_POST['id_supplier']);
+        $nm_supplier =$db->escape_string($_POST['nm_supplier']);
+
+        $sql = "INSERT into supplier values('$id_supplier','$nm_supplier')";
+        $res = $db->query($sql);
+        if($res){
+            if($db->affected_rows>0){
+                echo "<script>
+                alert('Data Supplier berhasil ditambahkan')
+                document.location.href = 'index.php'
+                </script>";
+            }
+            else{
+                echo "<script>alert('Data Gagal ditambahkan ".$db->error."')</script>";
+            }
+        }
+        else echo "GAGAL SQL : ".$db->error;
+    }
+}
+?>
+
 <title>Form Tambah Supplier</title>
 <div class=" offset-lg-3 col-lg-6">
     <div class="container" style="color:black;">
@@ -27,7 +53,7 @@
 $("#id_supplier").on("keyup", function() {
     var id_supplier = $("#id_supplier").val();
     $.ajax({
-        url: "cek.php",
+        url: "cek-supplier.php",
         method: "post",
         dataType: "json",
         data: {
