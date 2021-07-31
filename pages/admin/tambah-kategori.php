@@ -6,13 +6,13 @@
                 <label for="inputidKategori" class="form-label">ID Kategori</label>
                 <div class="input-group">
                     <!--<span class="input-group-text">M</span>-->
-                    <input type="text" class="form-control form-control-sm" name="idKategori" autocomplete="off"
+                    <input type="text" class="form-control form-control-sm" name="id_kat" id="id_kat" autocomplete="off"
                         required>
                 </div>
             </div>
             <div class="mb-3" col="12">
                 <label for="inputNamakatergori" class="form-label">Nama Kategori</label>
-                <input type="text" class="form-control form-control-sm" name="nama-kategori" autocomplete="off"
+                <input type="text" class="form-control form-control-sm" name="nm_kat" id="nm_kat" autocomplete="off"
                     required>
             </div>
             <div class="mb-3" col="12">

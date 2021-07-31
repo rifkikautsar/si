@@ -6,12 +6,14 @@
                 <label for="inputidmenu" class="form-label">ID Supplier</label>
                 <div class="input-group">
                     <!--<span class="input-group-text">M</span>-->
-                    <input type="text" class="form-control form-control-sm" name="idmenu" autocomplete="off" required>
+                    <input type="text" class="form-control form-control-sm" name="id_supplier" id="id_supplier"
+                        autocomplete="off" required>
                 </div>
             </div>
             <div class="mb-3" col="12">
                 <label for="inputNamaMenu" class="form-label">Nama Supplier</label>
-                <input type="text" class="form-control form-control-sm" name="nama-menu" autocomplete="off" required>
+                <input type="text" class="form-control form-control-sm" name="nm_supplier" id="nm_supplier"
+                    autocomplete="off" required>
             </div>
             <div class="mb-3" col="12">
                 <button class="btn btn-primary" type="submit" name="submit-menu">Submit</button>
