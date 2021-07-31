@@ -56,6 +56,7 @@ if($db->connect_errno==0){
                         <div class="form-group">
                             <input type="text" class="form-control form-control-user" id="username" name="username"
                                 required placeholder="Masukkan Username" autocomplete="off">
+                            <div class="uname" id="uname"></div>
                         </div>
                         <div class="form-group">
                             <select class="form-control" id="akses" name="akses" required>
@@ -94,14 +95,45 @@ if($db->connect_errno==0){
 ?>
 <script>
 $("#repeatPassword").on('keyup', function() {
-    var inp = $("#inputPassword").val();
-    var rep = $("#repeatPassword").val();
-    if (inp != rep) {
-        $(".isi").html("Password tidak sama!")
-        $("#reg").hide();
-    } else if (inp == rep) {
-        $(".isi").html("Password match!")
-        $("#reg").show();
+    var inp = $("#inputPassword").val().trim();
+    var rep = $("#repeatPassword").val().trim();
+    if (inp.length > 0) {
+        if (inp != rep) {
+            $(".isi").html("Password tidak sama!")
+            $("#reg").attr("disabled", "disabled");
+        } else if (inp == rep) {
+            $(".isi").html("Password match!")
+            $("#reg").removeAttr("disabled");
+        }
     }
+
+})
+$("#username").on("keyup", function() {
+    var username = $("#username").val();
+    if (username != "") {
+        $.ajax({
+            url: "getdetail.php",
+            method: "post",
+            dataType: "json",
+            data: {
+                username: username
+            },
+            success: function(resp) {
+                if (resp.status === "OK") {
+                    $("#uname").html("Username tersedia");
+                    $("#uname").css("color", "green");
+                    $("#reg").removeAttr("disabled");
+                } else if (resp.status === "ERROR") {
+                    $("#uname").html("Username telah digunakan!");
+                    $("#uname").css("color", "red");
+                    $("#reg").attr("disabled", "disabled");
+                }
+            }
+        })
+    } else if (username.trim().length == 0) {
+        $("#uname").html("");
+        $("#reg").attr("disabled", "disabled");
+    }
+
 })
 </script>
