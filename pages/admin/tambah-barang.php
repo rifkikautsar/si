@@ -54,6 +54,10 @@ if($db->connect_errno==0){
 h1 {
     font-size: 20px;
 }
+
+.container {
+    color: black;
+}
 </style>
 <div class=" offset-lg-2 col-lg-8">
     <div class="container">
