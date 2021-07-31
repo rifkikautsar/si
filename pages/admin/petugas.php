@@ -76,16 +76,19 @@ if($db->connect_errno==0){
                                     <table class="table table-borderless">
                                         <tr>
                                             <td>ID Petugas</td>
-                                            <td><input type="text" name="id_petugas" id="id_petugas" value="" readonly>
+                                            <td><input type="text" class="form-control" name="id_petugas"
+                                                    id="id_petugas" value="" readonly>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>Nama</td>
-                                            <td><input type="text" name="nama" id="nama" value="" required></td>
+                                            <td><input type="text" class="form-control" name="nama" id="nama" value=""
+                                                    required></td>
                                         </tr>
                                         <tr>
                                             <td>Username</td>
-                                            <td><input type="text" name="username" id="username" value="" required>
+                                            <td><input type="text" class="form-control" name="username" id="username"
+                                                    value="" required>
                                             </td>
                                         </tr>
                                         <tr>
@@ -131,12 +134,14 @@ $(document).ready(function() {
             data: {
                 id_petugas: id_petugas
             },
-            success: function(data) {
-                $("#nama").val(data.nm_petugas);
-                $("#username").val(data.username);
-                $("#jabatan").val(data.hak_akses);
-                $("#id_petugas").val(data.id_petugas);
-                $("#staticBackdrop3").modal("show");
+            success: function(resp) {
+                if (resp.status === "OK") {
+                    $("#nama").val(resp.data.nm_petugas);
+                    $("#username").val(resp.data.username);
+                    $("#jabatan").val(resp.data.hak_akses);
+                    $("#id_petugas").val(resp.data.id_petugas);
+                    $("#staticBackdrop3").modal("show");
+                }
             }
         })
     });

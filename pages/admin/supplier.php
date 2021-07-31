@@ -90,7 +90,7 @@ td {
 $(".edit-data").on("click", function() {
     var id_supplier = $(this).attr("Id");
     $.ajax({
-        url: "getsupplier.php",
+        url: "getdetail.php",
         method: "post",
         dataType: "json",
         data: {

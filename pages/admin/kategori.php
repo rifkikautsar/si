@@ -94,7 +94,7 @@ td {
 $(".edit-data").on("click", function() {
     var id_kat = $(this).attr("Id");
     $.ajax({
-        url: "getkategori.php",
+        url: "getdetail.php",
         method: "post",
         dataType: "json",
         data: {

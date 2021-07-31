@@ -42,5 +42,18 @@ if($db->connect_errno==0){
             }else {
                 $message = "ERROR".(DEVELOPMENT?" : ".$db->error:"");
             }
+    }else if(isset($_POST['id_satuan'])){
+        $id_satuan = $db->escape_string($_POST['id_satuan']);
+        $sql = "DELETE from satuan where id_satuan = '$id_satuan'";
+        $res = $db->query($sql);
+            if($res){
+                if($db->affected_rows>0){
+                    $message="OK";
+                }else{
+                    $message="ERROR".(DEVELOPMENT?" : ".$db->error:"");
+                }
+            }else {
+                $message = "ERROR".(DEVELOPMENT?" : ".$db->error:"");
+            }
     }
 }echo $message;

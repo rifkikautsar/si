@@ -72,17 +72,18 @@ if($db->connect_errno==0){
                                     <table class="table table-borderless">
                                         <tr>
                                             <td>ID Anggota</td>
-                                            <td><input type="text" name="id_anggota" id="id_anggota" value="" readonly>
+                                            <td><input type="text" class="form-control" name="id_anggota"
+                                                    id="id_anggota" value="" readonly>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>Nama</td>
-                                            <td><input type="text" name="nama" id="nama" value="" required
-                                                    autocomplete="off"></td>
+                                            <td><input type="text" class="form-control" name="nama" id="nama" value=""
+                                                    required autocomplete="off"></td>
                                         </tr>
                                         <tr>
                                             <td>Jenis Kelamin</td>
-                                            <td><select name="jk" id="jk" required>
+                                            <td><select name="jk" id="jk" class="form-control" required>
                                                     <option value="">Pilih Jenis Kelamin</option>
                                                     <option value="L">Laki-laki</option>
                                                     <option value="P">Perempuan</option>
@@ -121,11 +122,14 @@ $(document).ready(function() {
             data: {
                 id_anggota: id_anggota
             },
-            success: function(data) {
-                $("#nama").val(data.nm_anggota);
-                $("#jk").val(data.jk);
-                $("#id_anggota").val(data.id_anggota);
-                $("#staticBackdrop3").modal("show");
+            success: function(resp) {
+                if (resp.status === "OK") {
+                    $("#nama").val(resp.data.nm_anggota);
+                    $("#jk").val(resp.data.jk);
+                    $("#id_anggota").val(resp.data.id_anggota);
+                    $("#staticBackdrop3").modal("show");
+                }
+
             }
         })
     });

@@ -156,7 +156,7 @@ $list=$res->fetch_all(MYSQLI_ASSOC);
 $(".edit-data").on("click", function() {
     var id_barang = $(this).attr("id");
     $.ajax({
-        url: "getbarang.php",
+        url: "getdetail.php",
         method: "post",
         dataType: "json",
         data: {
@@ -227,7 +227,7 @@ $('#insert_form').on("submit", function(event) {
         alert("Tanggal tidak boleh kosong");
     } else {
         $.ajax({
-            url: "ubah-barang.php",
+            url: "ubah.php",
             method: "POST",
             data: $('#insert_form').serialize(),
             beforeSend: function() {
