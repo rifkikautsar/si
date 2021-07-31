@@ -7,7 +7,7 @@ if($db->connect_errno==0){
         $response['status'] = "ERROR";
     }
     else if(isset($_POST['id_petugas'])){
-        $id_petugas=$_POST['id_petugas'];
+        $id_petugas=$db->escape_string($_POST['id_petugas']);
         $sql="SELECT nm_petugas,hak_akses,username,id_petugas from petugas where id_petugas='$id_petugas'";
         $res=$db->query($sql);
         if($res){
@@ -23,7 +23,7 @@ if($db->connect_errno==0){
         }    
     
     }else if(isset($_POST['id_anggota'])){
-        $id_anggota = $_POST['id_anggota'];
+        $id_anggota = $db->escape_string($_POST['id_anggota']);
         $sql = "SELECT * from anggota where id_anggota='$id_anggota'";
         $res=$db->query($sql);
         if($res){
@@ -68,7 +68,7 @@ if($db->connect_errno==0){
             $response['status']= "ERROR".(DEVELOPMENT?" : ".$db->error:"");
         }
     }else if(isset($_POST['id_barang'])){
-        $id_barang = $_POST['id_barang'];
+        $id_barang = $db->escape_string($_POST['id_barang']);
         $sql= "SELECT b.id_barang,b.nm_barang,b.tanggal, b.jumlah,k.id_kat,k.nm_kat,s.nm_supplier,s.id_supplier,st.id_satuan,st.nm_satuan,rb.baik,rb.rusak,rb.rusak_berat,rb.sumber from barang b join rincian_barang rb using(id_barang) join kategori_barang k using(id_kat) join satuan st using(id_satuan) join supplier s using(id_supplier) where b.id_barang='$id_barang'";
         $res=$db->query($sql);
         if($res){
@@ -83,7 +83,7 @@ if($db->connect_errno==0){
             $response['status']= "ERROR".(DEVELOPMENT?" : ".$db->error:"");
         }
     }else if(isset($_POST['id_satuan'])){
-        $id_satuan = $_POST['id_satuan'];
+        $id_satuan = $db->escape_string($_POST['id_satuan']);
         $sql= "SELECT * from satuan where id_satuan = '$id_satuan'";
         $res=$db->query($sql);
         if($res){
@@ -97,6 +97,17 @@ if($db->connect_errno==0){
         }else{
             $response['status']= "ERROR".(DEVELOPMENT?" : ".$db->error:"");
         }
+    }else if(isset($_POST['username'])){
+        $username = $db->escape_string($_POST['username']);
+        $sql = "SELECT username from petugas where username='$username'";
+        $res=$db->query($sql);
+            if($res){
+                if($res->num_rows>0){
+                    $response['status'] = "ERROR";
+                }else if($res->num_rows==0){
+                    $response['status'] = "OK";
+                }
+            }
     }
 }echo json_encode($response);
 ?>
