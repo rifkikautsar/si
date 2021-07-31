@@ -98,7 +98,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link collapsed" href="index.php?page=">
+                <a class="nav-link collapsed" href="index.php?page=peminjaman">
                     <i class="fas fa-fw fa-cog"></i>
                     <span>Peminjaman</span>
                 </a>

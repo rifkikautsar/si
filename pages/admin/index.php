@@ -50,6 +50,10 @@ if(isset($_GET['page'])){
         case 'pengembalian':
             include("form-pengembalian.php");
             break;
+        case 'peminjaman':
+            include("form-peminjaman.php");
+            break;
+            
             default:
             echo "Halaman Tidak ditemukan";
     }

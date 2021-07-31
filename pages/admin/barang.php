@@ -31,7 +31,8 @@ td {
         </form>
     </div>
     <div class="row pb-2">
-        <a href="index.php?page=tambah-barang" class="btn btn-success">Tambah</a>
+        <a href="index.php?page=tambah-barang" class="btn btn-success">Tambah</a>&emsp;
+        <a href="excel.php" target="_blank" class="btn btn-primary">Generate Excel</a>
     </div>
     <div id="container">
         <div class="row">
