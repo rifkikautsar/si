@@ -13,40 +13,46 @@ th {
     text-align: center;
 }
 
-th, td {
+th,
+td {
     font-size: 14px;
 }
 </style>
+<title>Data Supplier</title>
 <div class="container-fluid" style="height: 445px; overflow: scroll;">
     <div class="row">
-        <form action="" method="post">
+        <!-- <form action="" method="post">
             <div class="mb-3">
                 <input type="text" class="form-control form-control-sm" name="keyword" placeholder="Cari Supplier"
                     autocomplete="off" size="50">
             </div>
-        </form>
+        </form> -->
     </div>
     <div class="row pb-2">
         <a href="index.php?page=tambah-supplier" class="btn btn-success">Tambah</a>
     </div>
     <div class="row">
         <table class="table table-bordered table-responsive-sm">
-            <tr>
-                <th rowspan="2" style="width: 10%;">ID Supplier</th>
-                <th rowspan="2" style="width: 15%;">Nama Kategori</th>
-                <th rowspan="2" colspan="2" style="width: 20%;">Aksi</th>
-            </tr>
-            <tbody>
-                <?php $k = getSupplier(); 
-                foreach($k as $row):?>
+            <form action="" method="post">
                 <tr>
-                    <td><?=$row['id_supplier'];?></td>
-                    <td><?=$row['nm_supplier'];?></td>
-                    <td><button class="btn btn-primary edit-data" id="<?=$row['id_supplier'];?>" name="edit">Edit</button></td>
-                    <td><button class="btn btn-danger">Delete</button></td>
+                    <th rowspan="2" style="width: 10%;">ID Supplier</th>
+                    <th rowspan="2" style="width: 15%;">Nama Kategori</th>
+                    <th rowspan="2" colspan="2" style="width: 20%;">Aksi</th>
                 </tr>
-                <?php endforeach; ?>
-            </tbody>
+                <tbody>
+                    <?php $k = getSupplier(); 
+                foreach($k as $row):?>
+                    <tr>
+                        <td><?=$row['id_supplier'];?></td>
+                        <td><?=$row['nm_supplier'];?></td>
+                        <td><button type="button" class="btn btn-primary edit-data" id="<?=$row['id_supplier'];?>"
+                                name="edit">Edit</button></td>
+                        <td><button type="button" class="btn btn-danger hapus-data"
+                                id="<?=$row['id_supplier'];?>">Delete</button></td>
+                    </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </form>
         </table>
         <!-- Modal Edit -->
         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
@@ -56,13 +62,25 @@ th, td {
                     <div class="modal-header">
                         <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
                     </div>
-                    <div class="modal-body">
-                        ...
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Understood</button>
-                    </div>
+                    <form action="" method="post" id="insert_form">
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="id_kat" class="form-label">ID Supplier</label>
+                                <input type="text" class="form-control form-control-sm" readonly name="id_supplier"
+                                    id="id_supplier" autocomplete="off" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="nm_kat" class="form-label">Nama Supplier</label>
+                                <input type="text" class="form-control form-control-sm" name="nm_supplier"
+                                    id="nm_supplier" autocomplete="off" required>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-success" name="insert" id="insert"
+                                value="Insert">Ubah</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kembali</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -70,6 +88,100 @@ th, td {
 </div>
 <script>
 $(".edit-data").on("click", function() {
-    $("#staticBackdrop").modal("show");
+    var id_supplier = $(this).attr("Id");
+    $.ajax({
+        url: "getsupplier.php",
+        method: "post",
+        dataType: "json",
+        data: {
+            id_supplier: id_supplier
+        },
+        success: function(resp) {
+            if (resp.status === "OK") {
+                $("#id_supplier").val(resp.data.id_supplier);
+                $("#nm_supplier").val(resp.data.nm_supplier);
+                $("#staticBackdrop").modal("show");
+            }
+        }
+    })
+})
+$('#insert_form').on("submit", function(event) {
+    event.preventDefault();
+    if ($('#nm_supplier').val() == "") {
+        alert("Nama tidak boleh kosong");
+    } else {
+        $.ajax({
+            url: "ubah.php",
+            method: "POST",
+            data: $('#insert_form').serialize(),
+            beforeSend: function() {
+                $('#insert').val("Inserting");
+            },
+            success: function(data) {
+                if (data === "OK") {
+                    Swal.fire({
+                        title: 'Data berhasil diubah',
+                        icon: 'success',
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Ok!'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            document.location.href = "index.php?page=supplier";
+                        }
+                    })
+                } else {
+                    Swal.fire({
+                        title: 'Data gagal diubah',
+                        text: data,
+                        icon: 'error',
+                        showCloseButton: true,
+                    })
+                }
+            },
+        });
+    }
+})
+$(".hapus-data").on("click", function() {
+    var id_supplier = $(this).attr("id");
+    Swal.fire({
+        title: 'Apakah anda ingin menghapus data supplier?',
+        icon: 'warning',
+        allowOutsideClick: false,
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        cancelButtonText: 'Kembali',
+        confirmButtonText: 'Hapus'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                url: "delete.php",
+                method: "post",
+                data: {
+                    id_supplier: id_supplier
+                },
+                success: function(data) {
+                    if (data === "OK") {
+                        Swal.fire({
+                            title: 'Data berhasil dihapus',
+                            icon: 'success',
+                            confirmButtonText: `Ok`
+                        }).then((result) => {
+                            document.location.href =
+                                'index.php?page=supplier'
+                        })
+                    } else {
+                        Swal.fire({
+                            title: 'Data gagal dihapus',
+                            text: data,
+                            icon: 'error',
+                            showCloseButton: true
+                        })
+                    }
+                }
+            })
+        }
+    })
 })
 </script>

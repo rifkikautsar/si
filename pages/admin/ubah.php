@@ -3,7 +3,7 @@
  $db=dbConnect();
  $message = '';
  if(!isset($_POST)){
-      $message = "ERROR";
+      $message = "ERROR"."Tidak ada Request POST";
  }
  if(isset($_POST['id_petugas']))  
  {  
@@ -64,6 +64,20 @@
       }else{
           $message='ERROR'.(DEVELOPMENT?" : ".$db->error:"");
       }
- }
+ }else if(isset($_POST['id_supplier'])){
+     $id_supplier = $db->escape_string($_POST['id_supplier']);
+     $nm_supplier = $db->escape_string($_POST['nm_supplier']);
+     $sql = "UPDATE supplier set nm_supplier='$nm_supplier' where id_supplier = '$id_supplier'";
+     $res=$db->query($sql);
+     if($res){
+          if($db->affected_rows>0){
+               $message = "OK";
+          }else{
+              $message="ERROR".(DEVELOPMENT?" : ".$db->error:"");
+          }
+     }else{
+         $message='ERROR'.(DEVELOPMENT?" : ".$db->error:"");
+     }
+}
  echo $message;
  ?>
