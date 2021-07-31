@@ -5,7 +5,7 @@ h1 {
 }
 </style>
 <div class=" offset-lg-2 col-lg-8">
-    <div class="container justify-content-center">
+    <div class="container justify-content-center" style="color:black;">
         <form class="col" action="" method="post" enctype="multipart/form-data">
             <div class="mb-3">
                 <label for="id_pinjam" class="form-label">ID Pinjam</label>

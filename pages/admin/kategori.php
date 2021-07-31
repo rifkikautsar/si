@@ -29,7 +29,7 @@ td {
         </form>
     </div> -->
     <div class="row pb-2">
-        <a href="index.php?page=tambah-supplier" class="btn btn-success">Tambah</a>
+        <a href="index.php?page=tambah-kategori" class="btn btn-success">Tambah</a>
     </div>
 
     <div class="row">

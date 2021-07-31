@@ -5,16 +5,16 @@
         <div class="container" style="color:black;">
             <form class="col" action="" method="post" enctype="multipart/form-data">
                 <div class="mb-3" col="12">
-                    <label for="inputidmenu" class="form-label">ID Supplier</label>
+                    <label for="inputidSatuan" class="form-label">ID Satuan</label>
                     <div class="input-group">
                         <!--<span class="input-group-text">M</span>-->
-                        <input type="text" class="form-control form-control-sm" name="idmenu" autocomplete="off"
+                        <input type="text" class="form-control form-control-sm" name="idSatuan" autocomplete="off"
                             required>
                     </div>
                 </div>
                 <div class="mb-3" col="12">
-                    <label for="inputNamaMenu" class="form-label">Nama Supplier</label>
-                    <input type="text" class="form-control form-control-sm" name="nama-menu" autocomplete="off"
+                    <label for="inputNamaSatuan" class="form-label">Nama Satuan</label>
+                    <input type="text" class="form-control form-control-sm" name="nama-satuan" autocomplete="off"
                         required>
                 </div>
                 <div class="mb-3" col="12">

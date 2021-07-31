@@ -56,7 +56,7 @@ h1 {
 }
 </style>
 <div class=" offset-lg-2 col-lg-8">
-    <div class="container">
+    <div class="container" style="color:black;">
         <form class="col" action="" method="post" enctype="multipart/form-data">
             <div class="form-group row">
                 <div class="col-sm-6">

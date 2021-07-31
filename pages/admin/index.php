@@ -38,6 +38,15 @@ if(isset($_GET['page'])){
         case 'tambah-anggota':
             include("tambah-anggota.php");
             break;
+        case 'tambah-supplier':
+            include("tambah-supplier.php");
+            break;
+        case 'tambah-kategori':
+            include("tambah-kategori.php");
+            break;
+        case 'tambah-satuan':
+            include("tambah-satuan.php");
+            break;
             default:
             echo "Halaman Tidak ditemukan";
     }
