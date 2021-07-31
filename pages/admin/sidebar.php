@@ -97,6 +97,18 @@
                     <span>Data Satuan</span>
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="index.php?page=">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Peminjaman</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="index.php?page=pengembalian">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Pengembalian</span>
+                </a>
+            </li>
             <!-- Divider -->
             <hr class="sidebar-divider" />
 

@@ -47,6 +47,9 @@ if(isset($_GET['page'])){
         case 'tambah-satuan':
             include("tambah-satuan.php");
             break;
+        case 'pengembalian':
+            include("form-pengembalian.php");
+            break;
             default:
             echo "Halaman Tidak ditemukan";
     }
