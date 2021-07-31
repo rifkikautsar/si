@@ -74,40 +74,82 @@
             </li>
             <!-- Nav Item - Daftar Menu Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="index.php?page=barang">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse3"
+                    aria-expanded="true" aria-controls="collapse3">
                     <i class="fas fa-fw fa-cog"></i>
-                    <span>Data Barang</span>
+                    <span>Menu Barang</span>
                 </a>
+                <div id="collapse3" class="collapse" aria-labelledby="heading3" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="index.php?page=barang">Data Barang</a>
+                        <a class="collapse-item" href="index.php?page=tambah-barang">Tambah Barang</a>
+                    </div>
+                </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link collapsed" href="index.php?page=supplier">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse4"
+                    aria-expanded="true" aria-controls="collapse4">
                     <i class="fas fa-fw fa-cog"></i>
-                    <span>Data Supplier</span>
+                    <span>Menu Supplier</span>
                 </a>
+                <div id="collapse4" class="collapse" aria-labelledby="heading4" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="index.php?page=supplier">Data Supplier</a>
+                        <a class="collapse-item" href="index.php?page=tambah-supplier">Tambah Supplier</a>
+                    </div>
+                </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link collapsed" href="index.php?page=kategori">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse5"
+                    aria-expanded="true" aria-controls="collapse5">
                     <i class="fas fa-fw fa-cog"></i>
-                    <span>Data Kategori</span>
+                    <span>Menu Kategori</span>
                 </a>
+                <div id="collapse5" class="collapse" aria-labelledby="heading5" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="index.php?page=kategori">Data Kategori</a>
+                        <a class="collapse-item" href="index.php?page=tambah-supplier">Tambah Kategori</a>
+                    </div>
+                </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link collapsed" href="index.php?page=satuan">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse6"
+                    aria-expanded="true" aria-controls="collapse6">
                     <i class="fas fa-fw fa-cog"></i>
-                    <span>Data Satuan</span>
+                    <span>Menu Satuan</span>
                 </a>
+                <div id="collapse6" class="collapse" aria-labelledby="heading6" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="index.php?page=satuan">Data Satuan</a>
+                        <a class="collapse-item" href="index.php?page=tambah-satuan">Tambah Satuan</a>
+                    </div>
+                </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link collapsed" href="index.php?page=peminjaman">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse7"
+                    aria-expanded="true" aria-controls="collapse7">
                     <i class="fas fa-fw fa-cog"></i>
-                    <span>Peminjaman</span>
+                    <span>Menu Peminjaman</span>
                 </a>
+                <div id="collapse7" class="collapse" aria-labelledby="heading7" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="index.php?page=peminjaman">Data Peminjaman</a>
+                        <a class="collapse-item" href="index.php?page=tambah-peminjaman">Tambah Peminjaman</a>
+                    </div>
+                </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link collapsed" href="index.php?page=pengembalian">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse8"
+                    aria-expanded="true" aria-controls="collapse8">
                     <i class="fas fa-fw fa-cog"></i>
-                    <span>Pengembalian</span>
+                    <span>Menu Pengembalian</span>
                 </a>
+                <div id="collapse8" class="collapse" aria-labelledby="heading8" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="index.php?page=peminjaman">Data Pengembalian</a>
+                        <a class="collapse-item" href="index.php?page=tambah-pengambalian">Tambah Pengembalian</a>
+                    </div>
+                </div>
             </li>
             <!-- Divider -->
             <hr class="sidebar-divider" />

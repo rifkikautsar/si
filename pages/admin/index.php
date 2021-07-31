@@ -50,7 +50,7 @@ if(isset($_GET['page'])){
         case 'pengembalian':
             include("form-pengembalian.php");
             break;
-        case 'peminjaman':
+        case 'tambah-peminjaman':
             include("form-peminjaman.php");
             break;
             
