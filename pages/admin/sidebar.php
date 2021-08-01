@@ -146,8 +146,8 @@
                 </a>
                 <div id="collapse8" class="collapse" aria-labelledby="heading8" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="index.php?page=peminjaman">Data Pengembalian</a>
-                        <a class="collapse-item" href="index.php?page=tambah-pengambalian">Tambah Pengembalian</a>
+                        <a class="collapse-item" href="index.php?page=pengembalian">Data Pengembalian</a>
+                        <a class="collapse-item" href="index.php?page=tambah-pengembalian">Tambah Pengembalian</a>
                     </div>
                 </div>
             </li>

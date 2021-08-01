@@ -23,6 +23,7 @@ if($db->connect_errno==0){
         $db1= new PDO('mysql:host=localhost; dbname=si', 'root', '');
         $db1->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         try{
+            $query = "";
             $db1->beginTransaction();
             $sh = $db1->exec("INSERT INTO peminjaman VALUES('$id_pinjam','$petugas','$id_anggota','$tanggal')");
                 for($i=0;$i<count($array);$i++){
@@ -32,10 +33,11 @@ if($db->connect_errno==0){
                     $tanggal = $array[$i]['tanggal'];
                     $id_petugas = $array[$i]['id_petugas'];
                     $jumlah = $array[$i]['jumlah'];
-                    $sh = $db1->exec("INSERT INTO rincian_peminjaman VALUES('$id_pinjam','$id_barang','$jumlah')");
+                    $query .= "('$id_pinjam','$id_barang','$jumlah'), ";
                     $sh = $db1->exec("UPDATE barang SET jumlah=jumlah-'$jumlah' WHERE barang.id_barang='$id_barang'");
                     $sh = $db1->exec("UPDATE rincian_barang SET baik=baik-'$jumlah' WHERE rincian_barang.id_barang='$id_barang'");
                 }
+            $sh = $db1->exec("INSERT INTO rincian_peminjaman VALUES ".rtrim($query,", "));
             $db1->commit();
             echo "
                     <script>

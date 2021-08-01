@@ -149,3 +149,36 @@ function getSatuan(){
 	else
 		return FALSE;
 }
+function getIdPinjam(){
+	$db=dbConnect();
+	if($db->connect_errno==0){
+		$sql= "SELECT p.id_pinjam,a.nm_anggota FROM peminjaman p JOIN anggota a USING(id_anggota) WHERE p.id_pinjam NOT IN 
+		(SELECT id_pinjam FROM pengembalian)";
+		$res=$db->query($sql);
+		if($res){
+			$data=$res->fetch_all(MYSQLI_ASSOC);
+			$res->free();
+			return $data;
+		}
+		else
+			return FALSE; 
+	}
+	else
+		return FALSE;
+}
+function getPeminjaman($id_pinjam){
+	$db=dbConnect();
+	if($db->connect_errno==0){
+		$sql= "SELECT p.id_pinjam,a.nm_anggota,b.id_barang,b.nm_barang,r.jml_barang,s.nm_satuan FROM peminjaman p JOIN anggota a USING(id_anggota) join rincian_peminjaman r using(id_pinjam) join barang b using(id_barang) join satuan s using(id_satuan) where id_pinjam ='$id_pinjam'";
+		$res=$db->query($sql);
+		if($res){
+			$data=$res->fetch_all(MYSQLI_ASSOC);
+			$res->free();
+			return $data;
+		}
+		else
+			return FALSE; 
+	}
+	else
+		return FALSE;
+}
