@@ -32,9 +32,8 @@ $db=dbConnect();
                     <th rowspan="2" style="width: 10%;">ID Pinjam</th>
                     <th rowspan="2" style="width: 10%;">Nama Peminjam</th>
                     <th rowspan="2" style="width: 10%;">Petugas</th>
-                    <th rowspan="2" style="width: 15%;">Barang Yang Dipinjam</th>
                     <th rowspan="2" style="width: 15%;">Tanggal Pinjam</th>
-                    <th rowspan="2" colspan="2" style="width: 20%;">Aksi</th>
+                    <th rowspan="2" style="width: 15%;">Barang Yang Dipinjam</th>
                 </tr>
                 <tbody>
                     <form action="" method="post">
@@ -44,16 +43,16 @@ $db=dbConnect();
                             <td><?=$row['id_pinjam'];?></td>
                             <td><?=$row['nm_anggota'];?></td>
                             <td><?=$row['nm_petugas'];?></td>
+                            <td><?=date("d-m-Y",strtotime($row['tgl_pinjam']));?></td>
                             <td><button type="button" class="btn btn-primary view-data" value="view"
                                     id="<?=$row['id_pinjam'];?>">
                                     Detail</button></td>
-                            <td><?=date("d-m-Y",strtotime($row['tgl_pinjam']));?></td>
-                            <td><button type="button" class="btn btn-primary edit-pinjam" id="<?=$row['id_pinjam'];?>"
+                            <!-- <td><button type="button" class="btn btn-primary edit-pinjam" id="<?=$row['id_pinjam'];?>"
                                     name="edit">Edit</button>
-                            </td>
-                            <td><button type="button" class="btn btn-danger hapus-pinjam" name="hapus"
+                            </td> -->
+                            <!-- <td><button type="button" class="btn btn-danger hapus-pinjam" name="hapus"
                                     id="<?=$row['id_pinjam'];?>">Delete</button>
-                            </td>
+                            </td> -->
                         </tr>
                         <?php endforeach; ?>
                     </form>
@@ -92,6 +91,47 @@ $(".view-data").on("click", function() {
             $(".detail").html(data);
         }
     })
-
+})
+$(".hapus-pinjam").on("click", function() {
+    var id_pinjam = $(this).attr("Id");
+    Swal.fire({
+        title: 'Apakah anda yakin menghapus data?',
+        icon: 'warning',
+        allowOutsideClick: false,
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                url: "../src/hapus.php",
+                method: "post",
+                data: {
+                    id_pinjam: id_pinjam
+                },
+                success: function(data) {
+                    if (data === "OK") {
+                        Swal.fire({
+                            title: 'Deleted',
+                            text: 'Your file has been deleted.',
+                            icon: 'success',
+                            confirmButtonText: `Ok`
+                        }).then((result) => {
+                            document.location.href =
+                                'index.php?page=peminjaman'
+                        })
+                    } else {
+                        Swal.fire({
+                            title: 'Data gagal dihapus',
+                            text: data,
+                            icon: 'error',
+                            showCloseButton: true,
+                        })
+                    }
+                }
+            })
+        }
+    })
 })
 </script>

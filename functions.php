@@ -188,7 +188,7 @@ function getDataPeminjaman(){
 	if($db->connect_errno==0){
 		$sql= "SELECT p.id_pinjam,a.nm_anggota,pt.nm_petugas,p.tgl_pinjam 
 		FROM peminjaman p JOIN anggota a USING(id_anggota)
-		join petugas pt using (id_petugas)";
+		join petugas pt using (id_petugas) where p.id_pinjam not in (SELECT id_pinjam from pengembalian)";
 		$res=$db->query($sql);
 		if($res){
 			$data=$res->fetch_all(MYSQLI_ASSOC);

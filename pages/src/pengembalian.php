@@ -34,7 +34,7 @@ $db=dbConnect();
                     <th rowspan="2" style="width: 10%;">Petugas</th>
                     <th rowspan="2" style="width: 15%;">Barang Yang Dipinjam</th>
                     <th rowspan="2" style="width: 15%;">Tanggal Kembali</th>
-                    <th rowspan="2" colspan="2" style="width: 20%;">Aksi</th>
+                    <th rowspan="2" style="width: 20%;">Aksi</th>
                 </tr>
                 <tbody>
                     <form action="" method="post">
@@ -48,9 +48,9 @@ $db=dbConnect();
                                     id="<?=$row['id_pinjam'];?>">
                                     Detail</button></td>
                             <td><?=date("d-m-Y",strtotime($row['tgl_kembali']));?></td>
-                            <td><button type="button" class="btn btn-primary edit-kembali" id="<?=$row['id_pinjam'];?>"
+                            <!-- <td><button type="button" class="btn btn-primary edit-kembali" id="<?=$row['id_pinjam'];?>"
                                     name="edit">Edit</button>
-                            </td>
+                            </td> -->
                             <td><button type="button" class="btn btn-danger hapus-kembali" name="hapus"
                                     id="<?=$row['id_pinjam'];?>">Delete</button>
                             </td>
@@ -92,6 +92,47 @@ $(".view-data").on("click", function() {
             $(".detail").html(data);
         }
     })
-
+})
+$(".hapus-kembali").on("click", function() {
+    var id_kembali = $(this).attr("Id");
+    Swal.fire({
+        title: 'Apakah anda yakin menghapus data?',
+        icon: 'warning',
+        allowOutsideClick: false,
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                url: "../src/hapus.php",
+                method: "post",
+                data: {
+                    id_kembali: id_kembali
+                },
+                success: function(data) {
+                    if (data === "OK") {
+                        Swal.fire({
+                            title: 'Deleted',
+                            text: 'Your file has been deleted.',
+                            icon: 'success',
+                            confirmButtonText: `Ok`
+                        }).then((result) => {
+                            document.location.href =
+                                'index.php?page=pengembalian'
+                        })
+                    } else {
+                        Swal.fire({
+                            title: 'Data gagal dihapus',
+                            text: data,
+                            icon: 'error',
+                            showCloseButton: true,
+                        })
+                    }
+                }
+            })
+        }
+    })
 })
 </script>

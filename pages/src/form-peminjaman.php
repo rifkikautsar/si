@@ -46,6 +46,9 @@ if($db->connect_errno==0){
                         icon: 'success',
                         confirmButtonColor: '#3085d6',
                         confirmButtonText: 'Ok!'
+                    }).then((result) => {
+                        document.location.href =
+                            'index.php?page=peminjaman'
                     })
                     </script>";
         }catch ( \PDOException $e ) {

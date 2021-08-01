@@ -28,6 +28,18 @@ else{
             }
         }
         else $message = "ERROR" .(DEVELOPMENT?" : ".$db->error:"");
+    }else if(isset($_POST['id_kembali'])){
+        include("../../functions.php");
+        $db=dbConnect();
+        $id_kembali=$_POST['id_kembali'];
+        $sql="DELETE from peminjaman where id_pinjam='$id_kembali'";
+        $res=$db->query($sql);
+        if($res){
+            if($db->affected_rows>0){
+                $message = "OK";
+            }
+        }
+        else $message = "ERROR" .(DEVELOPMENT?" : ".$db->error:"");
     }
 }
 echo $message;
