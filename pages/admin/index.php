@@ -62,5 +62,5 @@ if(isset($_GET['page'])){
 }else{
     include("content.php");
 }
-include_once("footer.php");
+include_once("../../footer.php");
 ?>

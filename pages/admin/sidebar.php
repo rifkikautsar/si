@@ -155,7 +155,7 @@
             <hr class="sidebar-divider" />
 
             <!-- Heading -->
-            <div class="sidebar-heading">Addons</div>
+            <div class="sidebar-heading">Pages</div>
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
