@@ -2,7 +2,13 @@
 include("../../functions.php");
 $db=dbConnect();
 ?>
-
+<style>
+.table>tbody>tr>* {
+    vertical-align: middle;
+    text-align: center;
+    color: black;
+}
+</style>
 <title>Data Pengembalian</title>
 <div class="container-fluid" style="height: 500px; overflow: scroll;">
     <div class="row">
@@ -21,7 +27,7 @@ $db=dbConnect();
     </div>
     <div id="container">
         <div class="row">
-            <table class="table table-bordered table-responsive-sm">
+            <table class="table table-bordered table-responsive-sm" style="color: black;">
                 <tr>
                     <th rowspan="2" style="width: 10%;">ID Pinjam</th>
                     <th rowspan="2" style="width: 10%;">Nama Peminjam</th>
@@ -58,11 +64,10 @@ $db=dbConnect();
     <!--Modal Detail-->
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="staticBackdropLabel">List Barang Yang Dipinjam</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body detail">
                 </div>
@@ -73,3 +78,20 @@ $db=dbConnect();
         </div>
     </div>
 </div>
+<script>
+$(".view-data").on("click", function() {
+    var id_pinjam = $(this).attr("Id");
+    $.ajax({
+        url: "../src/get-rincian-pinjam.php",
+        method: "post",
+        data: {
+            id_pinjam: id_pinjam
+        },
+        success: function(data) {
+            $("#staticBackdrop").modal("show");
+            $(".detail").html(data);
+        }
+    })
+
+})
+</script>

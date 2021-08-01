@@ -5,7 +5,7 @@ if(isset($_POST['id_pinjam'])){
     $db=dbConnect();
     $k = getRincianPeminjaman($_POST['id_pinjam']);
     $output .= "
-    <table class='table table-borderless'>";
+    <table class='table table-borderless' style='color:black;'>";
     foreach($k as $row){
         $output .= '
         <tr>
