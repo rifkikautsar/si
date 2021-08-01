@@ -105,7 +105,7 @@ h1 {
 }
 </style>
 <div class="container">
-    <form class="col" action="" method="post">
+    <form class="col" action="" method="post" name="f">
         <div class="row">
             <div class="col-xl-8 col-lg-7">
                 <div class="card shadow mb-4">
@@ -226,11 +226,31 @@ h1 {
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <td><button type="submit" name="simpan" id="simpan" class="btn btn-success"
-                                            hidden>Simpan</button></td>
+                                    <td><button type="button" id="simpan" class="btn btn-success" data-bs-toggle="modal"
+                                            data-bs-target="#staticBackdrop" hidden>Simpan</button></td>
                                 </tr>
                             </tfoot>
                         </table>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal Konfirmasi simpan -->
+            <!-- Modal -->
+            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog" style="color: black;">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="staticBackdropLabel">Konfirmasi</h5>
+                        </div>
+                        <div class="modal-body">
+                            Apakah data yang dimasukkan sudah benar?
+                            Jika benar maka klik simpan.
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-success" name="simpan">Simpan</button>
+                        </div>
                     </div>
                 </div>
             </div>
