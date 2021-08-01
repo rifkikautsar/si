@@ -47,11 +47,13 @@ if($db->connect_errno==0){
                             <div class="col-sm-4 mb-3 mb-sm-0">
                                 <input type="text" class="form-control form-control-user" placeholder="ID Petugas"
                                     required name="id_petugas" autocomplete="off" id="id_petugas">
+                                <div id="id"></div>
                             </div>
                             <div class="col-sm-8">
                                 <input type="text" class="form-control form-control-user" id="nama" name="nama" required
                                     placeholder="Masukkan Nama" autocomplete="off">
                             </div>
+
                         </div>
                         <div class="form-group">
                             <input type="text" class="form-control form-control-user" id="username" name="username"
@@ -134,6 +136,32 @@ $("#username").on("keyup", function() {
         $("#uname").html("");
         $("#reg").attr("disabled", "disabled");
     }
-
+})
+$("#id_petugas").on("keyup", function() {
+    var id = $("#id_petugas").val();
+    if (id != "") {
+        $.ajax({
+            url: "../src/getdetail.php",
+            method: "post",
+            dataType: "json",
+            data: {
+                id: id
+            },
+            success: function(resp) {
+                if (resp.status === "OK") {
+                    $("#id").html("ID tersedia");
+                    $("#id").css("color", "green");
+                    $("#reg").removeAttr("disabled");
+                } else if (resp.status === "ERROR") {
+                    $("#id").html("ID telah ADA!");
+                    $("#id").css("color", "red");
+                    $("#reg").attr("disabled", "disabled");
+                }
+            }
+        })
+    } else if (id.trim().length == 0) {
+        $("#id").html("");
+        $("#reg").attr("disabled", "disabled");
+    }
 })
 </script>
