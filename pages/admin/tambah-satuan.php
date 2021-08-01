@@ -21,15 +21,35 @@ if($db->connect_errno==0){
         if($res){
             if($db->affected_rows>0){
                 echo "<script>
-                alert('Data Satuan berhasil ditambahkan')
-                document.location.href = 'index.php'
+                Swal.fire({
+                    title: 'Data satuan berhasil ditambahkan',
+                    icon: 'success',
+                    confirmButtonColor: '#3085d6',
+                    confirmButtonText: 'Ok!'
+                }).then((result) => {
+                    document.location.href = 'index.php?page=satuan'
+                })
                 </script>";
             }
             else{
-                echo "<script>alert('Data Gagal ditambahkan ".$db->error."')</script>";
+                echo "<script>
+                Swal.fire({
+                    title: 'Data gagal ditambahkan',
+                    text: (DEVELOPMENT?' : '.$db->error:''),
+                    icon: 'error',
+                    showCloseButton: true,
+                })
+                </script>";
             }
         }
-        else echo "GAGAL SQL : ".$db->error;
+        else echo "<script>
+        Swal.fire({
+            title: 'SQL gagal dieksekusi',
+            text: (DEVELOPMENT?' : '.$db->connect_error:''),
+            icon: 'error',
+            showCloseButton: true,
+        })
+        </script>";
     }
 }
 ?>
