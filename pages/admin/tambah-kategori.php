@@ -1,3 +1,29 @@
+<?php
+include_once("../../functions.php");
+$db=dbConnect();
+if($db->connect_errno==0){
+    if(isset($_POST['submit'])){
+        $id_kat =$db->escape_string($_POST['id_kat']);
+        $nm_kat =$db->escape_string($_POST['nm_kat']);
+
+        $sql = "INSERT into kategori_barang values('$id_kat','$nm_kat')";
+        $res = $db->query($sql);
+        if($res){
+            if($db->affected_rows>0){
+                echo "<script>
+                alert('Data Kategori berhasil ditambahkan')
+                document.location.href = 'index.php'
+                </script>";
+            }
+            else{
+                echo "<script>alert('Data Gagal ditambahkan ".$db->error."')</script>";
+            }
+        }
+        else echo "GAGAL SQL : ".$db->error;
+    }
+}
+?>
+
 <title>Form Tambah Kategori</title>
 <div class=" offset-lg-3 col-lg-6">
     <div class="container" style="color:black;">
@@ -9,6 +35,7 @@
                     <input type="text" class="form-control form-control-sm" name="id_kat" id="id_kat" autocomplete="off"
                         required>
                 </div>
+                <div id="isi"></div>
             </div>
             <div class="mb-3" col="12">
                 <label for="inputNamakatergori" class="form-label">Nama Kategori</label>
@@ -16,9 +43,32 @@
                     required>
             </div>
             <div class="mb-3" col="12">
-                <button class="btn btn-primary" type="submit" name="submit-menu">Submit</button>
+                <button class="btn btn-primary" type="submit" name="submit">Submit</button>
                 <button class="btn btn-danger" type="reset">Reset</button>
             </div>
         </form>
     </div>
 </div>
+<script>
+$("#id_kat").on("keyup", function() {
+    var id_kat = $("#id_kat").val();
+    $.ajax({
+        url: "cek-kategori.php",
+        method: "post",
+        dataType: "json",
+        data: {
+            id_kat: id_kat
+        },
+        success: function(resp) {
+            if (resp.status === "ERROR") {
+                $("#isi").html("ID Kategori telah ADA!");
+                $("#isi").css("color", "red");
+                $("#submit").attr("disabled", "disabled");
+            } else if (resp.status === "OK") {
+                $("#isi").html("");
+                $("#submit").removeAttr("disabled");
+            }
+        }
+    })
+})
+</script>

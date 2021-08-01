@@ -108,7 +108,7 @@
                 <div id="collapse5" class="collapse" aria-labelledby="heading5" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="index.php?page=kategori">Data Kategori</a>
-                        <a class="collapse-item" href="index.php?page=tambah-supplier">Tambah Kategori</a>
+                        <a class="collapse-item" href="index.php?page=tambah-kategori">Tambah Kategori</a>
                     </div>
                 </div>
             </li>
