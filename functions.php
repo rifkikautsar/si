@@ -182,3 +182,60 @@ function getPeminjaman($id_pinjam){
 	else
 		return FALSE;
 }
+
+function getDataPeminjaman(){
+	$db=dbConnect();
+	if($db->connect_errno==0){
+		$sql= "SELECT p.id_pinjam,a.nm_anggota,pt.nm_petugas,p.tgl_pinjam 
+		FROM peminjaman p JOIN anggota a USING(id_anggota)
+		join petugas pt using (id_petugas)";
+		$res=$db->query($sql);
+		if($res){
+			$data=$res->fetch_all(MYSQLI_ASSOC);
+			$res->free();
+			return $data;
+		}
+		else
+			return FALSE; 
+	}
+	else
+		return FALSE;
+}
+
+function getRincianPeminjaman($id_pinjam){
+	$db=dbConnect();
+	if($db->connect_errno==0){
+		$sql= "SELECT b.nm_barang,rp.jml_barang,rp.id_pinjam
+		from rincian_peminjaman rp join barang b using(id_barang) where rp.id_pinjam = '$id_pinjam'";
+		$res=$db->query($sql);
+		if($res){
+			$data=$res->fetch_all(MYSQLI_ASSOC);
+			$res->free();
+			return $data;
+		}
+		else
+			return FALSE; 
+	}
+	else
+		return FALSE;
+}
+
+function getDataPengembalian(){
+	$db=dbConnect();
+	if($db->connect_errno==0){
+		$sql= "SELECT pm.id_pinjam,a.nm_anggota,pt.nm_petugas,pg.tgl_kembali 
+		FROM peminjaman pm JOIN pengembalian pg using(id_pinjam)
+		join anggota a USING(id_anggota)
+		join petugas pt on pg.id_petugas = pt.id_petugas";
+		$res=$db->query($sql);
+		if($res){
+			$data=$res->fetch_all(MYSQLI_ASSOC);
+			$res->free();
+			return $data;
+		}
+		else
+			return FALSE; 
+	}
+	else
+		return FALSE;
+}

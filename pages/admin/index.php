@@ -47,8 +47,11 @@ if(isset($_GET['page'])){
         case 'tambah-satuan':
             include("tambah-satuan.php");
             break;
+        case 'peminjaman':
+            include("peminjaman.php");
+            break;
         case 'pengembalian':
-            include("form-pengembalian.php");
+            include("pengembalian.php");
             break;
         case 'tambah-peminjaman':
             include("form-peminjaman.php");
