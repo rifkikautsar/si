@@ -11,13 +11,39 @@ if($db->connect_errno==0){
         if($res){
             if($db->affected_rows>0){
                 echo "<script>
-                alert('Data anggota berhasil ditambahkan')
-                document.location.href = 'index.php?page=anggota'
+                Swal.fire({
+                    title: 'Data anggota berhasil ditambahkan',
+                    icon: 'success',
+                    confirmButtonColor: '#3085d6',
+                    confirmButtonText: 'Ok!'
+                }).then((result) => {
+                    document.location.href = 'index.php?page=supplier'
+                })
                 </script>";
             }else{
-                echo "<script>alert('Data Gagal ditambahkan ".$db->error."')</script>";
+                echo (DEVELOPMENT?'ERROR : '.$db->error:'');
+                echo "
+                    <script>
+                    Swal.fire({
+                    title: 'Data gagal ditambahkan',
+                    icon: 'error',
+                    showCloseButton: true,
+                    })
+                    </script>
+                    ";
             }
-        }else echo "GAGAL SQL : ".$db->error;
+        }else {
+            echo (DEVELOPMENT?'ERROR : '.$db->error:'');
+            echo "
+                <script>
+                Swal.fire({
+                title: 'Data gagal ditambahkan',
+                icon: 'error',
+                showCloseButton: true,
+                })
+                </script>
+                ";
+        }
     }
 ?>
 <title>Tambah Anggota</title>

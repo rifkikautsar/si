@@ -22,24 +22,30 @@ if($db->connect_errno==0){
                 </script>";
             }
             else{
-                echo "<script>
-                Swal.fire({
+                echo (DEVELOPMENT?'ERROR : '.$db->error:'');
+                echo "
+                    <script>
+                    Swal.fire({
                     title: 'Data gagal ditambahkan',
-                    text: (DEVELOPMENT?' : '.$db->error:''),
                     icon: 'error',
                     showCloseButton: true,
-                })
-                </script>";
+                    })
+                    </script>
+                    ";
             }
         }
-        else echo "<script>
-        Swal.fire({
-            title: 'SQL gagal dieksekusi',
-            text: (DEVELOPMENT?' : '.$db->connect_error:''),
-            icon: 'error',
-            showCloseButton: true,
-        })
-        </script>";
+        else{
+            echo (DEVELOPMENT?'ERROR : '.$db->error:'');
+            echo "
+                <script>
+                Swal.fire({
+                title: 'Data gagal ditambahkan',
+                icon: 'error',
+                showCloseButton: true,
+                })
+                </script>
+                ";
+        }
     }
 }
 ?>
