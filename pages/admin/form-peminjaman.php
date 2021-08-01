@@ -48,18 +48,18 @@ if($db->connect_errno==0){
                         confirmButtonText: 'Ok!'
                     })
                     </script>";
-        }catch ( Exception $e ) {
+        }catch ( \PDOException $e ) {
             $db1->rollBack();
+            echo (DEVELOPMENT?'ERROR : '.$e->getMessage():'');
             echo "
-            <script>
-            Swal.fire({
+                <script>
+                Swal.fire({
                 title: 'Data gagal ditambahkan',
-                text: (DEVELOPMENT?' : '.$e:''),
                 icon: 'error',
                 showCloseButton: true,
-            })
-            </script>
-            ";
+                })
+                </script>
+                ";
         }
         
         // for($i=0;$i<count($array);$i++){
