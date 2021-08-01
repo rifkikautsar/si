@@ -63,7 +63,7 @@ h1 {
                 <label for="id_pinjam" class="form-label">ID Pinjam</label>
                 <select class="form-control form-control-sm" name="id_pinjam" id="id_pinjam" autocomplete="off"
                     required>
-                    <option value="0" selected>Pilih ID Pinjam</option>
+                    <option value="" selected>Pilih ID Pinjam</option>
                     <?php foreach($k as $row):?>
                     <option value="<?=$row['id_pinjam'];?>"><?=$row['id_pinjam'];?>-<?=$row['nm_anggota'];?></option>
                     <?php endforeach; ?>
@@ -105,7 +105,7 @@ $("#id_pinjam").on("change", function() {
     var id_pinjam = $("#id_pinjam").val();
     var tgl = $("#tgl_kembali").val();
     var petugas = $("#nm_petugas").val();
-    if (id_pinjam != 0) {
+    if (id_pinjam.length) {
         $.ajax({
             url: "getpeminjaman.php",
             method: "post",

@@ -150,7 +150,7 @@ h1 {
                                     <label for="id_anggota" class="form-label">Nama Peminjam</label>
                                     <select class="form-control form-control-sm" name="nm_anggota" id="nm_anggota"
                                         autocomplete="off" required>
-                                        <option value="0" selected>Pilih</option>
+                                        <option value="" selected>Pilih</option>
                                         <?php
                                         $k = getAnggota();
                                         foreach($k as $row):?>
