@@ -4,19 +4,19 @@ $db=dbConnect();
 ?>
 
 <title>Data Pengembalian</title>
-<div class="container-fluid" style="height: 445px; overflow: scroll;">
+<div class="container-fluid" style="height: 500px; overflow: scroll;">
     <div class="row">
         <form action="" method="post">
             <div class="mb-3">
                 <!--<label for="inputidbarang" class="form-label">ID Barang</label>
                 <span class="input-group-text">M</span>-->
-                <input type="text" class="form-control form-control-sm" name="keyword" placeholder="Cari Data Peminjaman"
-                    id="keyword" autocomplete="off" size="50">
+                <input type="text" class="form-control form-control-sm" name="keyword"
+                    placeholder="Cari Data Peminjaman" id="keyword" autocomplete="off" size="50">
             </div>
         </form>
     </div>
     <div class="row pb-2">
-        <a href="index.php?page=tambah-peminjaman" class="btn btn-success">Tambah</a>&emsp;
+        <a href="index.php?page=tambah-pengembalian" class="btn btn-success">Tambah</a>&emsp;
         <!--<a href="../../excel-barang.php" target="_blank" class="btn btn-primary">Generate Excel</a>-->
     </div>
     <div id="container">
@@ -39,8 +39,8 @@ $db=dbConnect();
                             <td><?=$row['nm_anggota'];?></td>
                             <td><?=$row['nm_petugas'];?></td>
                             <td><button type="button" class="btn btn-primary view-data" value="view"
-                                id="<?=$row['id_pinjam'];?>">
-                                Detail</button></td>
+                                    id="<?=$row['id_pinjam'];?>">
+                                    Detail</button></td>
                             <td><?=date("d-m-Y",strtotime($row['tgl_kembali']));?></td>
                             <td><button type="button" class="btn btn-primary edit-kembali" id="<?=$row['id_pinjam'];?>"
                                     name="edit">Edit</button>
@@ -56,8 +56,8 @@ $db=dbConnect();
         </div>
     </div>
     <!--Modal Detail-->
-    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static"
-        data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -67,8 +67,9 @@ $db=dbConnect();
                 <div class="modal-body detail">
                 </div>
                 <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
     </div>
+</div>

@@ -18,37 +18,40 @@ td {
     font-size: 14px;
 }
 </style>
-<title>Data Supplier</title>
+<title>Data Kategori</title>
 <div class="container-fluid" style="height: 445px; overflow: scroll;">
-    <div class="row">
-        <!-- <form action="" method="post">
+    <!-- <div class="row">
+        <form action="" method="post">
             <div class="mb-3">
                 <input type="text" class="form-control form-control-sm" name="keyword" placeholder="Cari Supplier"
                     autocomplete="off" size="50">
             </div>
-        </form> -->
-    </div>
+        </form>
+    </div> -->
     <div class="row pb-2">
-        <a href="index.php?page=tambah-supplier" class="btn btn-success">Tambah</a>
+        <a href="index.php?page=tambah-kategori" class="btn btn-success">Tambah</a>
     </div>
+
     <div class="row">
+
         <table class="table table-bordered table-responsive-sm">
             <form action="" method="post">
                 <tr>
-                    <th rowspan="2" style="width: 10%;">ID Supplier</th>
-                    <th rowspan="2" style="width: 15%;">Nama Supplier</th>
-                    <th rowspan="2" colspan="2" style="width: 20%;">Aksi</th>
+                    <th rowspan="2" style="width: 10%;">ID Kategori</th>
+                    <th rowspan="2" style="width: 15%;">Nama Kategori</th>
+                    <th rowspan="2" colspan="2" style="width: 10%;">Aksi</th>
                 </tr>
                 <tbody>
-                    <?php $k = getSupplier(); 
+                    <?php $k = getKategori(); 
                 foreach($k as $row):?>
                     <tr>
-                        <td><?=$row['id_supplier'];?></td>
-                        <td><?=$row['nm_supplier'];?></td>
-                        <td><button type="button" class="btn btn-primary edit-data" id="<?=$row['id_supplier'];?>"
-                                name="edit">Edit</button></td>
+                        <td><?=$row['id_kat'];?></td>
+                        <td><?=$row['nm_kat'];?></td>
+                        <td><button type="button" class="btn btn-primary edit-data" id="<?=$row['id_kat'];?>"
+                                name="edit">Edit</button>
+                        </td>
                         <td><button type="button" class="btn btn-danger hapus-data"
-                                id="<?=$row['id_supplier'];?>">Delete</button></td>
+                                id="<?=$row['id_kat'];?>">Delete</button></td>
                     </tr>
                     <?php endforeach; ?>
                 </tbody>
@@ -65,14 +68,14 @@ td {
                     <form action="" method="post" id="insert_form">
                         <div class="modal-body">
                             <div class="form-group">
-                                <label for="id_kat" class="form-label">ID Supplier</label>
-                                <input type="text" class="form-control form-control-sm" readonly name="id_supplier"
-                                    id="id_supplier" autocomplete="off" required>
+                                <label for="id_kat" class="form-label">ID Kategori</label>
+                                <input type="text" class="form-control form-control-sm" readonly name="id_kat"
+                                    id="id_kat" autocomplete="off" required>
                             </div>
                             <div class="form-group">
-                                <label for="nm_kat" class="form-label">Nama Supplier</label>
-                                <input type="text" class="form-control form-control-sm" name="nm_supplier"
-                                    id="nm_supplier" autocomplete="off" required>
+                                <label for="nm_kat" class="form-label">Nama Kategori</label>
+                                <input type="text" class="form-control form-control-sm" name="nm_kat" id="nm_kat"
+                                    autocomplete="off" required>
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -85,21 +88,22 @@ td {
             </div>
         </div>
     </div>
+
 </div>
 <script>
 $(".edit-data").on("click", function() {
-    var id_supplier = $(this).attr("Id");
+    var id_kat = $(this).attr("Id");
     $.ajax({
-        url: "getdetail.php",
+        url: "../src/getdetail.php",
         method: "post",
         dataType: "json",
         data: {
-            id_supplier: id_supplier
+            id_kat: id_kat
         },
         success: function(resp) {
             if (resp.status === "OK") {
-                $("#id_supplier").val(resp.data.id_supplier);
-                $("#nm_supplier").val(resp.data.nm_supplier);
+                $("#id_kat").val(resp.data.id_kat);
+                $("#nm_kat").val(resp.data.nm_kat);
                 $("#staticBackdrop").modal("show");
             }
         }
@@ -107,11 +111,11 @@ $(".edit-data").on("click", function() {
 })
 $('#insert_form').on("submit", function(event) {
     event.preventDefault();
-    if ($('#nm_supplier').val() == "") {
+    if ($('#nm_kat').val() == "") {
         alert("Nama tidak boleh kosong");
     } else {
         $.ajax({
-            url: "ubah.php",
+            url: "../src/ubah.php",
             method: "POST",
             data: $('#insert_form').serialize(),
             beforeSend: function() {
@@ -127,7 +131,7 @@ $('#insert_form').on("submit", function(event) {
                         confirmButtonText: 'Ok!'
                     }).then((result) => {
                         if (result.isConfirmed) {
-                            document.location.href = "index.php?page=supplier";
+                            document.location.href = "index.php?page=kategori";
                         }
                     })
                 } else {
@@ -143,9 +147,9 @@ $('#insert_form').on("submit", function(event) {
     }
 })
 $(".hapus-data").on("click", function() {
-    var id_supplier = $(this).attr("id");
+    var id_kat = $(this).attr("id");
     Swal.fire({
-        title: 'Apakah anda ingin menghapus data supplier?',
+        title: 'Apakah anda ingin menghapus data kategori?',
         icon: 'warning',
         allowOutsideClick: false,
         showCancelButton: true,
@@ -156,10 +160,10 @@ $(".hapus-data").on("click", function() {
     }).then((result) => {
         if (result.isConfirmed) {
             $.ajax({
-                url: "delete.php",
+                url: "../src/delete.php",
                 method: "post",
                 data: {
-                    id_supplier: id_supplier
+                    id_kat: id_kat
                 },
                 success: function(data) {
                     if (data === "OK") {
@@ -169,7 +173,7 @@ $(".hapus-data").on("click", function() {
                             confirmButtonText: `Ok`
                         }).then((result) => {
                             document.location.href =
-                                'index.php?page=supplier'
+                                'index.php?page=kategori'
                         })
                     } else {
                         Swal.fire({

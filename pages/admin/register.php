@@ -112,7 +112,7 @@ $("#username").on("keyup", function() {
     var username = $("#username").val();
     if (username != "") {
         $.ajax({
-            url: "getdetail.php",
+            url: "../src/getdetail.php",
             method: "post",
             dataType: "json",
             data: {

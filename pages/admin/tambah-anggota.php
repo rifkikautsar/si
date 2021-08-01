@@ -17,7 +17,7 @@ if($db->connect_errno==0){
                     confirmButtonColor: '#3085d6',
                     confirmButtonText: 'Ok!'
                 }).then((result) => {
-                    document.location.href = 'index.php?page=supplier'
+                    document.location.href = 'index.php?page=anggota'
                 })
                 </script>";
             }else{

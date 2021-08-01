@@ -200,7 +200,7 @@ $("#berat").on("blur", function() {
 $("#id_kat").on("change", function() {
     var id_kat = $('select option').filter(':selected').val()
     $.ajax({
-        url: "generateID.php",
+        url: "../src/generateID.php",
         method: "post",
         dataType: "json",
         data: {

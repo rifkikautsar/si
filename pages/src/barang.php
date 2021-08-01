@@ -188,7 +188,7 @@ td {
 $(".edit-data").on("click", function() {
     var id_barang = $(this).attr("id");
     $.ajax({
-        url: "getdetail.php",
+        url: "../src/getdetail.php",
         method: "post",
         dataType: "json",
         data: {
@@ -259,7 +259,7 @@ $('#insert_form').on("submit", function(event) {
         alert("Tanggal tidak boleh kosong");
     } else {
         $.ajax({
-            url: "ubah.php",
+            url: "../src/ubah.php",
             method: "POST",
             data: $('#insert_form').serialize(),
             beforeSend: function() {
@@ -293,7 +293,7 @@ $('#insert_form').on("submit", function(event) {
 $(document).ready(function() {
     $("#keyword").on('keyup', function() {
         $keyword = $("#keyword").val();
-        $("#container").load("cari.php?keyword=" + encodeURI($keyword));
+        $("#container").load("../src/cari.php?keyword=" + encodeURI($keyword));
     });
 
     $(".hapus-data").on("click", function() {
@@ -310,7 +310,7 @@ $(document).ready(function() {
         }).then((result) => {
             if (result.isConfirmed) {
                 $.ajax({
-                    url: "delete.php",
+                    url: "../src/delete.php",
                     method: "post",
                     data: {
                         id_barang: id_barang

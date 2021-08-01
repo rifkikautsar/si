@@ -116,7 +116,7 @@ $(document).ready(function() {
     $(".view-edit").on("click", function() {
         var id_anggota = $(this).attr("id");
         $.ajax({
-            url: "getdetail.php",
+            url: "../src/getdetail.php",
             method: "post",
             dataType: "json",
             data: {
@@ -148,7 +148,7 @@ $(document).ready(function() {
         }).then((result) => {
             if (result.isConfirmed) {
                 $.ajax({
-                    url: "hapus.php",
+                    url: "../src/hapus.php",
                     method: "post",
                     data: {
                         id_anggota: id_anggota
@@ -188,7 +188,7 @@ $('#insert_form').on("submit", function(event) {
         alert("jabatan tidak boleh kosong");
     } else {
         $.ajax({
-            url: "ubah.php",
+            url: "../src/ubah.php",
             method: "POST",
             data: $('#insert_form').serialize(),
             beforeSend: function() {

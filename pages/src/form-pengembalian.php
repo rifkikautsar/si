@@ -107,7 +107,7 @@ $("#id_pinjam").on("change", function() {
     var petugas = $("#nm_petugas").val();
     if (id_pinjam.length) {
         $.ajax({
-            url: "getpeminjaman.php",
+            url: "../src/getpeminjaman.php",
             method: "post",
             data: {
                 id_pinjam: id_pinjam,

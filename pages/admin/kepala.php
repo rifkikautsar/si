@@ -125,17 +125,17 @@ $(document).ready(function() {
     $(".view-edit").on("click", function() {
         var id_petugas = $(this).attr("id");
         $.ajax({
-            url: "getdetail.php",
+            url: "../src/getdetail.php",
             method: "post",
             dataType: "json",
             data: {
                 id_petugas: id_petugas
             },
-            success: function(data) {
-                $("#nama").val(data.nm_petugas);
-                $("#username").val(data.username);
-                $("#jabatan").val(data.hak_akses);
-                $("#id_petugas").val(data.id_petugas);
+            success: function(resp) {
+                $("#nama").val(resp.data.nm_petugas);
+                $("#username").val(resp.data.username);
+                $("#jabatan").val(resp.data.hak_akses);
+                $("#id_petugas").val(resp.data.id_petugas);
                 $("#staticBackdrop3").modal("show");
             }
         })
@@ -155,7 +155,7 @@ $(document).ready(function() {
         }).then((result) => {
             if (result.isConfirmed) {
                 $.ajax({
-                    url: "hapus.php",
+                    url: "../src/hapus.php",
                     method: "post",
                     data: {
                         id_petugas: id_petugas
@@ -195,7 +195,7 @@ $('#insert_form').on("submit", function(event) {
         alert("jabatan tidak boleh kosong");
     } else {
         $.ajax({
-            url: "ubah.php",
+            url: "../src/ubah.php",
             method: "POST",
             data: $('#insert_form').serialize(),
             beforeSend: function() {
