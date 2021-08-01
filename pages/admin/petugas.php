@@ -83,12 +83,12 @@ if($db->connect_errno==0){
                                         <tr>
                                             <td>Nama</td>
                                             <td><input type="text" class="form-control" name="nama" id="nama" value=""
-                                                    required></td>
+                                                    required autocomplete="off"></td>
                                         </tr>
                                         <tr>
                                             <td>Username</td>
                                             <td><input type="text" class="form-control" name="username" id="username"
-                                                    value="" required>
+                                                    value="" required autocomplete="off">
                                             </td>
                                         </tr>
                                         <tr>

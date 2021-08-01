@@ -108,6 +108,17 @@ if($db->connect_errno==0){
                     $response['status'] = "OK";
                 }
             }
+    }else if(isset($_POST['id'])){
+        $id_petugas = $db->escape_string($_POST['id']);
+        $sql = "SELECT id_petugas from petugas where id_petugas='$id_petugas'";
+        $res=$db->query($sql);
+            if($res){
+                if($res->num_rows>0){
+                    $response['status'] = "ERROR";
+                }else if($res->num_rows==0){
+                    $response['status'] = "OK";
+                }
+            }
     }
 }echo json_encode($response);
 ?>
