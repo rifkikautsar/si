@@ -3,28 +3,27 @@
     $db = dbConnect();
     if ($db->connect_errno == 0) {
         if (isset($_POST["TblLogin"])) {
-        $id_pegawai = $db->escape_string($_POST["uname"]);
+        $username = $db->escape_string($_POST["uname"]);
         $password = $db->escape_string($_POST["pswd"]);
-        $sql = "SELECT id_pegawai, nama, jabatan FROM pegawai
-        WHERE id_pegawai='$id_pegawai' and pass=md5('$password')";
+        $sql = "SELECT * FROM petugas
+        WHERE username='$username' and pass=md5('$password')";
         $res = $db->query($sql);
             if ($res) {
                 if ($res->num_rows == 1) {
                 $data = $res->fetch_assoc();
                 session_start();
-                $_SESSION["id_pegawai"] = $data["id_pegawai"];
-                $_SESSION["nama"] = $data["nama"];
-                $_SESSION["jabatan"] = $data["jabatan"];
+                $_SESSION["username"] = $data["username"];
+                $_SESSION["id_petugas"] = $data["id_petugas"];
+                $_SESSION["nm_petugas"] = $data["nm_petugas"];
+                $_SESSION["hak_akses"] = $data["hak_akses"];
                 $_SESSION['passphrase'] = openssl_random_pseudo_bytes(16);
                 $_SESSION['iv'] = openssl_random_pseudo_bytes(16);
-                if($_SESSION["jabatan"]=="pelayan"){
-                header("Location: app/pelayan/");
-                }else if($_SESSION["jabatan"]=="owner"){
-                    header("Location: app/owner/");
-                }else if($_SESSION["jabatan"]=="koki"){
-                    header("Location: app/koki/");
-                }else if($_SESSION["jabatan"]=="kasir"){
-                    header("Location: app/kasir/");
+                if($_SESSION["hak_akses"]=="admin"){
+                header("Location: pages/admin/");
+                }else if($_SESSION["hak_akses"]=="kepala"){
+                    header("Location: pages/kepala/");
+                }else if($_SESSION["hak_akses"]=="petugas"){
+                    header("Location: pages/petugas/");
                 }
         } else
         header("Location: index.php?error=1");

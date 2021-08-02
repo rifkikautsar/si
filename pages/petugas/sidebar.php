@@ -51,31 +51,14 @@
             <li class="nav-item active">
                 <a class="nav-link" href="index.php">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
+                    <span>Home</span></a>
             </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider" />
 
             <!-- Heading -->
-            <div class="sidebar-heading">Data Master</div>
-
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>Data Stakeholder</span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="index.php?page=petugas">Data Petugas</a>
-                        <a class="collapse-item" href="index.php?page=kepala">Data Kepala Lab</a>
-                        <a class="collapse-item" href="index.php?page=anggota">Data Anggota</a>
-                        <a class="collapse-item" href="index.php?page=admin">Data Admin</a>
-                    </div>
-                </div>
-            </li>
+            <div class="sidebar-heading">Data Menu</div>
             <!-- Nav Item - Daftar Menu Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse3"
@@ -156,25 +139,6 @@
                 </div>
             </li>
             <!-- Divider -->
-            <hr class="sidebar-divider" />
-
-            <!-- Heading -->
-            <div class="sidebar-heading">Pages</div>
-
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-                    aria-expanded="true" aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Pages</span>
-                </a>
-                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="index.php?page=register">Register</a>
-                    </div>
-                </div>
-            </li>
-            <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block" />
 
             <!-- Sidebar Toggler (Sidebar) -->
@@ -194,7 +158,7 @@
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                         <i class="fa fa-bars"></i>
                     </button>
-
+                    <?=strtoupper($_SESSION['hak_akses']);?> LAB IPA SMPN 1 Sukaresik
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <div class="topbar-divider d-none d-sm-block"></div>
@@ -203,7 +167,8 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                                <span
+                                    class="mr-2 d-none d-lg-inline text-gray-600 small"><?=$_SESSION['nm_petugas'];?></span>
                                 <img class="img-profile rounded-circle" src="../../assets/images/undraw_profile.svg" />
                             </a>
                             <!-- Dropdown - User Information -->

@@ -1,4 +1,5 @@
 <?php
+session_start();
 include("../../functions.php");
 $db=dbConnect();
 $keyword = urldecode($_GET["keyword"]);
@@ -17,7 +18,9 @@ $list=$res->fetch_all(MYSQLI_ASSOC);
             <th rowspan="2" style="width: 10%;">Jml</th>
             <th colspan="3" style="width: 10%;">Keterangan</th>
             <th rowspan="2" style="width: 15%;">Tanggal</th>
+            <?php if($_SESSION['hak_akses']!=="kepala"):?>
             <th rowspan="2" colspan="2" style="width: 20%;">Aksi</th>
+            <?php endif;?>
         </tr>
         <tr>
             <th>Baik</th>
@@ -37,11 +40,13 @@ $list=$res->fetch_all(MYSQLI_ASSOC);
                     <td><?=$row['rusak'];?></td>
                     <td><?=$row['rusak_berat'];?></td>
                     <td><?=$row['tanggal'];?></td>
+                    <?php if($_SESSION['hak_akses']!=="kepala"):?>
                     <td><button type="button" class="btn btn-primary edit-data" id="<?=$row['id_barang'];?>"
                             name="edit">Edit</button>
                     </td>
                     <td><button type="button" class="btn btn-danger hapus-data" name="hapus"
                             id="<?=$row['id_barang'];?>">Delete</button></td>
+                    <?php endif;?>
                 </tr>
                 <?php endforeach; ?>
             </form>

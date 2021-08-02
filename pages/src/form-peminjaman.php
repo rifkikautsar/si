@@ -141,10 +141,11 @@ h1 {
                                         id="id_pinjam" autocomplete="off" required value="<?=$Id;?>" readonly>
                                 </div>
                                 <div class="col-sm-6">
-                                    <label for="nama_petugas" class="form-label">Nama Petugas</label>
+                                    <label for="nama_petugas" class="form-label">ID Petugas</label>
                                     <div class="input-group">
                                         <input type="text" class="form-control form-control-sm" id="nm_petugas"
-                                            name="nm_petugas" autocomplete="off" required>
+                                            name="nm_petugas" autocomplete="off" value="<?=$_SESSION['id_petugas'];?>"
+                                            readonly>
                                     </div>
                                 </div>
                             </div>

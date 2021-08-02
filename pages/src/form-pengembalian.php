@@ -86,10 +86,10 @@ h1 {
                     </select>
                 </div> -->
                 <div class="col-sm-6">
-                    <label for="nm_petugas" class="form-label">Nama Petugas</label>
+                    <label for="nm_petugas" class="form-label">ID Petugas</label>
                     <div class="input-group">
                         <input type="text" class="form-control form-control-sm" id="nm_petugas" name="nm_petugas"
-                            autocomplete="off" required>
+                            autocomplete="off" readonly value="<?=$_SESSION['id_petugas'];?>">
                     </div>
                 </div>
             </div>

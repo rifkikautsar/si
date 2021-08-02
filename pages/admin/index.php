@@ -1,4 +1,27 @@
 <?php
+session_start();
+if (!isset($_SESSION["username"])){
+header("Location: ../../index.php?error=4");
+}else if($_SESSION["hak_akses"]!="admin"){
+    $hak_akses = $_SESSION["hak_akses"];
+    if($hak_akses=="petugas"){
+        echo "
+        <script>
+        alert('Anda tidak memiliki akses ke halaman tersebut');
+        document.location.href = '../petugas/';
+        </script>";
+        
+    }
+    if($hak_akses=="kepala"){
+        echo "
+        <script>
+        alert('Anda tidak memiliki akses ke halaman tersebut');
+        document.location.href = '../kepala/';
+        </script>";   
+    }
+}
+?>
+<?php
 include_once("sidebar.php");
 
 
