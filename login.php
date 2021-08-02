@@ -36,11 +36,12 @@
                                     <form class="user" method="post" action="konfirmlogin.php">
                                         <div class="form-group">
                                             <input type="text" class="form-control form-control-user" name="uname"
-                                                aria-describedby="emailHelp" placeholder="Masukkan username...">
+                                                aria-describedby="emailHelp" placeholder="Masukkan username..."
+                                                required>
                                         </div>
                                         <div class="form-group">
                                             <input type="password" class="form-control form-control-user" name="pswd"
-                                                placeholder="Password">
+                                                placeholder="Password" required>
                                         </div>
                                         <button type="submit" name="TblLogin"
                                             class="btn btn-primary btn-user btn-block">
