@@ -8,6 +8,10 @@
     user-select: none;
 }
 
+img {
+    margin-bottom: 0.5rem;
+}
+
 @media (min-width: 768px) {
     .bd-placeholder-img-lg {
         font-size: 3.5rem;
@@ -31,7 +35,9 @@
                             <div class="col">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">Silakan Login</h1>
+                                        <img src="assets/images/logo.jpg" alt="" style="max-width: 76px;">
+                                        <h4 class="text-gray-900">Lab IPA SMPN 1 Sukaresik</h4>
+                                        <h5 class="h5 text-gray-900 mb-4 pt-1">Silakan Login</h5>
                                     </div>
                                     <form class="user" method="post" action="konfirmlogin.php">
                                         <div class="form-group">
