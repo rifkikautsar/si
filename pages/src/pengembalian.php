@@ -17,13 +17,17 @@ $db=dbConnect();
                 <!--<label for="inputidbarang" class="form-label">ID Barang</label>
                 <span class="input-group-text">M</span>-->
                 <input type="text" class="form-control form-control-sm" name="keyword"
-                    placeholder="Cari Data Peminjaman" id="keyword" autocomplete="off" size="50">
+                    placeholder="Cari Data Pengembalian" id="keyword" autocomplete="off" size="50">
             </div>
         </form>
     </div>
     <div class="row pb-2">
+        <?php if($_SESSION['hak_akses']==="kepala"):?>
+        <a href="../../excel-kembali.php" target="_blank" class="btn btn-primary">Generate Excel</a>
+        <?php else:?>
         <a href="index.php?page=tambah-pengembalian" class="btn btn-success">Tambah</a>&emsp;
         <a href="../../excel-kembali.php" target="_blank" class="btn btn-primary">Generate Excel</a>
+        <?php endif;?>
     </div>
     <div id="container">
         <div class="row">
@@ -33,8 +37,11 @@ $db=dbConnect();
                     <th rowspan="2" style="width: 10%;">Nama Peminjam</th>
                     <th rowspan="2" style="width: 10%;">Petugas</th>
                     <th rowspan="2" style="width: 15%;">Barang Yang Dipinjam</th>
+                    <th rowspan="2" style="width: 15%;">Tanggal Pinjam</th>
                     <th rowspan="2" style="width: 15%;">Tanggal Kembali</th>
+                    <?php if($_SESSION['hak_akses']!=="kepala"):?>
                     <th rowspan="2" style="width: 20%;">Aksi</th>
+                    <?php endif;?>
                 </tr>
                 <tbody>
                     <form action="" method="post">
@@ -47,13 +54,16 @@ $db=dbConnect();
                             <td><button type="button" class="btn btn-primary view-data" value="view"
                                     id="<?=$row['id_pinjam'];?>">
                                     Detail</button></td>
+                            <td><?=date("d-m-Y",strtotime($row['tgl_pinjam']));?></td>
                             <td><?=date("d-m-Y",strtotime($row['tgl_kembali']));?></td>
                             <!-- <td><button type="button" class="btn btn-primary edit-kembali" id="<?=$row['id_pinjam'];?>"
                                     name="edit">Edit</button>
                             </td> -->
+                            <?php if($_SESSION['hak_akses']!=="kepala"):?>
                             <td><button type="button" class="btn btn-danger hapus-kembali" name="hapus"
                                     id="<?=$row['id_pinjam'];?>">Delete</button>
                             </td>
+                            <?php endif;?>
                         </tr>
                         <?php endforeach; ?>
                     </form>
@@ -135,4 +145,8 @@ $(".hapus-kembali").on("click", function() {
         }
     })
 })
+$("#keyword").on('keyup', function() {
+    $keyword = $("#keyword").val();
+    $("#container").load("../src/cari-kembali.php?keyword=" + encodeURI($keyword));
+});
 </script>

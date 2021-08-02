@@ -29,7 +29,9 @@ td {
         </form>
     </div> -->
     <div class="row pb-2">
+        <?php if($_SESSION['hak_akses']!=="kepala"):?>
         <a href="index.php?page=tambah-kategori" class="btn btn-success">Tambah</a>
+        <?php endif;?>
     </div>
 
     <div class="row">
@@ -39,7 +41,9 @@ td {
                 <tr>
                     <th rowspan="2" style="width: 10%;">ID Kategori</th>
                     <th rowspan="2" style="width: 15%;">Nama Kategori</th>
+                    <?php if($_SESSION['hak_akses']!=="kepala"):?>
                     <th rowspan="2" colspan="2" style="width: 10%;">Aksi</th>
+                    <?php endif;?>
                 </tr>
                 <tbody>
                     <?php $k = getKategori(); 
@@ -47,11 +51,13 @@ td {
                     <tr>
                         <td><?=$row['id_kat'];?></td>
                         <td><?=$row['nm_kat'];?></td>
+                        <?php if($_SESSION['hak_akses']!=="kepala"):?>
                         <td><button type="button" class="btn btn-primary edit-data" id="<?=$row['id_kat'];?>"
                                 name="edit">Edit</button>
                         </td>
                         <td><button type="button" class="btn btn-danger hapus-data"
                                 id="<?=$row['id_kat'];?>">Delete</button></td>
+                        <?php endif;?>
                     </tr>
                     <?php endforeach; ?>
                 </tbody>

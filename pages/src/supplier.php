@@ -29,7 +29,9 @@ td {
         </form> -->
     </div>
     <div class="row pb-2">
+        <?php if($_SESSION['hak_akses']!=="kepala"):?>
         <a href="index.php?page=tambah-supplier" class="btn btn-success">Tambah</a>
+        <?php endif;?>
     </div>
     <div class="row">
         <table class="table table-bordered table-responsive-sm">
@@ -37,7 +39,9 @@ td {
                 <tr>
                     <th rowspan="2" style="width: 10%;">ID Supplier</th>
                     <th rowspan="2" style="width: 15%;">Nama Supplier</th>
+                    <?php if($_SESSION['hak_akses']!=="kepala"):?>
                     <th rowspan="2" colspan="2" style="width: 20%;">Aksi</th>
+                    <?php endif;?>
                 </tr>
                 <tbody>
                     <?php $k = getSupplier(); 
@@ -45,10 +49,12 @@ td {
                     <tr>
                         <td><?=$row['id_supplier'];?></td>
                         <td><?=$row['nm_supplier'];?></td>
+                        <?php if($_SESSION['hak_akses']!=="kepala"):?>
                         <td><button type="button" class="btn btn-primary edit-data" id="<?=$row['id_supplier'];?>"
                                 name="edit">Edit</button></td>
                         <td><button type="button" class="btn btn-danger hapus-data"
                                 id="<?=$row['id_supplier'];?>">Delete</button></td>
+                        <?php endif;?>
                     </tr>
                     <?php endforeach; ?>
                 </tbody>

@@ -196,7 +196,7 @@ h1 {
                                             <tr>
                                                 <td><?=$row['id_barang'];?></td>
                                                 <td><?=$row['nm_barang'];?></td>
-                                                <td><?=$row['baik'];?></td>
+                                                <td><?=$row['baik']." ".$row['nm_satuan'];?></td>
                                                 <td>
                                                     <button type="button" class="btn btn-primary pinjam"
                                                         id="<?=$row['id_barang'];?>"

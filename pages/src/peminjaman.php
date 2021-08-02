@@ -22,8 +22,16 @@ $db=dbConnect();
         </form>
     </div>
     <div class="row pb-2">
+        <?php if($_SESSION['hak_akses']==="kepala"):?>
+        <a href="../../excel-pinjam.php" target="_blank" class="btn btn-primary">Generate Excel</a>
+        <?php else:?>
         <a href="index.php?page=tambah-peminjaman" class="btn btn-success">Tambah</a>&emsp;
         <a href="../../excel-pinjam.php" target="_blank" class="btn btn-primary">Generate Excel</a>
+        <?php endif;?>
+    </div>
+    <div class="row">
+        <span>*Data peminjaman berikut adalah data peminjaman yang belum dikembalikan</span><br>
+        <span>*Apabila telah dikembalikan, maka akan muncul di Data Pengembalian</span>
     </div>
     <div id="container">
         <div class="row">
@@ -47,12 +55,6 @@ $db=dbConnect();
                             <td><button type="button" class="btn btn-primary view-data" value="view"
                                     id="<?=$row['id_pinjam'];?>">
                                     Detail</button></td>
-                            <!-- <td><button type="button" class="btn btn-primary edit-pinjam" id="<?=$row['id_pinjam'];?>"
-                                    name="edit">Edit</button>
-                            </td> -->
-                            <!-- <td><button type="button" class="btn btn-danger hapus-pinjam" name="hapus"
-                                    id="<?=$row['id_pinjam'];?>">Delete</button>
-                            </td> -->
                         </tr>
                         <?php endforeach; ?>
                     </form>
@@ -134,4 +136,8 @@ $(".hapus-pinjam").on("click", function() {
         }
     })
 })
+$("#keyword").on('keyup', function() {
+    $keyword = $("#keyword").val();
+    $("#container").load("../src/cari-pinjam.php?keyword=" + encodeURI($keyword));
+});
 </script>

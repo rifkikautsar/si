@@ -169,7 +169,7 @@ function getIdPinjam(){
 function getPeminjaman($id_pinjam){
 	$db=dbConnect();
 	if($db->connect_errno==0){
-		$sql= "SELECT p.id_pinjam,a.nm_anggota,b.id_barang,b.nm_barang,r.jml_barang,s.nm_satuan FROM peminjaman p JOIN anggota a USING(id_anggota) join rincian_peminjaman r using(id_pinjam) join barang b using(id_barang) join satuan s using(id_satuan) where id_pinjam ='$id_pinjam'";
+		$sql= "SELECT p.id_pinjam,pt.nm_petugas,a.nm_anggota,b.id_barang,b.nm_barang,r.jml_barang,s.nm_satuan FROM peminjaman p JOIN anggota a USING(id_anggota) join petugas pt using(id_petugas) join rincian_peminjaman r using(id_pinjam) join barang b using(id_barang) join satuan s using(id_satuan) where id_pinjam ='$id_pinjam'";
 		$res=$db->query($sql);
 		if($res){
 			$data=$res->fetch_all(MYSQLI_ASSOC);
@@ -223,7 +223,7 @@ function getRincianPeminjaman($id_pinjam){
 function getDataPengembalian(){
 	$db=dbConnect();
 	if($db->connect_errno==0){
-		$sql= "SELECT pm.id_pinjam,a.nm_anggota,pt.nm_petugas,pg.tgl_kembali 
+		$sql= "SELECT pm.id_pinjam,pm.tgl_pinjam,a.nm_anggota,pt.nm_petugas,pg.tgl_kembali 
 		FROM peminjaman pm JOIN pengembalian pg using(id_pinjam)
 		join anggota a USING(id_anggota)
 		join petugas pt on pg.id_petugas = pt.id_petugas";

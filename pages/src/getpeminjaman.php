@@ -14,6 +14,7 @@ if($db->connect_errno==0){
         <td>Nama Barang</td>
         <td>Jumlah</td>
     </tr>
+    Petugas Peminjaman : <?=$k[0]['nm_petugas'];?>
     <?php foreach($k as $row):?>
     <tr>
         <td><?=$row['nm_barang'];?></td>
