@@ -61,7 +61,7 @@ h1 {
 </style>
 <div class=" offset-lg-2 col-lg-8">
     <div class="container" style="color:black;">
-        <form class="col" action="" method="post" enctype="multipart/form-data">
+        <form class="col" action="" method="post" name="f" id="f" enctype="multipart/form-data">
             <div class="form-group row">
                 <div class="col-sm-6">
                     <label for="inputidbarang" class="form-label">ID Barang</label>
@@ -148,8 +148,9 @@ h1 {
                     </select>
                 </div>
             </div>
+            <div id="warn"></div>
             <div class="mb-3">
-                <button class="btn btn-primary" type="submit" name="submit">Submit</button>
+                <button class="btn btn-primary" type="submit" name="submit" id="submit">Submit</button>
                 <button class="btn btn-danger" type="reset">Reset</button>
             </div>
         </form>
@@ -219,5 +220,19 @@ $("#id_kat").on("change", function() {
             }
         }
     })
+})
+$("#f").submit(function(e) {
+    var satuan = $("#satuan").val();
+    var supp = $("#id_supplier").val();
+    var sumber = $("#sumber").val();
+
+    if (satuan != "0" && supp != "0" && sumber != "0") {
+        $("#warn").html("DATA VALID! SUBMITTING FORM....")
+        $("#warn").css("color", "green");
+        return;
+    }
+    $("#warn").html("DATA BELUM TERISI DENGAN BENAR! Cek satuan, sumber dan supplier!!")
+    $("#warn").css("color", "red");
+    e.preventDefault();
 })
 </script>
