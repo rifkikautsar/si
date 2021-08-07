@@ -232,8 +232,8 @@ h1 {
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <td><button type="button" id="simpan" class="btn btn-success" data-bs-toggle="modal"
-                                            data-bs-target="#staticBackdrop" hidden>Simpan</button></td>
+                                    <td><button type="button" id="simpan" class="btn btn-success" hidden>Simpan</button>
+                                    </td>
                                 </tr>
                             </tfoot>
                         </table>
@@ -252,6 +252,7 @@ h1 {
                         <div class="modal-body">
                             Apakah data yang dimasukkan sudah benar?
                             Jika benar maka klik simpan.
+                            <div id="isi"></div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -266,15 +267,20 @@ h1 {
 <script>
 $(".pinjam").on("click", function() {
     var id_barang = $(this).attr("Id");
-    $("#rincian tbody").append("<tr><td><input type='text' name='id_barang[]' value='" + id_barang +
-        "' style='width:6rem;'></td><td><input type='number' name='jml[]' style='width:4rem;'></td><td><button class='btn btn-danger btn-mini' id='hapus'><i class='uil uil-trash'></i></button></td>"
+    $("#rincian tbody").append("<tr><td><input type='text' name='id_barang[]' id='id_brg' value='" + id_barang +
+        "' style='width:6rem;'></td><td><input type='number' name='jml[]' id='jml' style='width:4rem;'></td><td><button class='btn btn-danger btn-mini' id='hapus'><i class='uil uil-trash'></i></button></td>"
     );
     $("#simpan").removeAttr("hidden");
-})
+});
 $("#rincian tbody").on('click', '#hapus', function(event) {
     $(this).parent().parent().remove();
     if ($("#rincian tbody").children().length == 0) {
         $("#simpan").attr("hidden", "hidden");
     }
 });
+$("#simpan").on("click", function() {
+    // var jml = $(this).val();
+    // var id = $("#rincian").find("#id_brg", this).val();
+    $("#staticBackdrop").modal("show");
+})
 </script>
